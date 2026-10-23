@@ -1,0 +1,3536 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Đăng Nhập - Transense AI</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+<script>
+(function(){
+  const choice=localStorage.getItem('transenseTheme');
+  const system=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  document.documentElement.dataset.theme=(choice==='dark'||choice==='light')?choice:system;
+})();
+</script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            margin: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 20px;
+
+            background:
+                var(--bg, #0b0f17);
+
+            color:
+                var(--text, #ffffff);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           LOGIN WRAPPER
+        ========================================================= */
+
+        .login-shell {
+            width: min(
+                1280px,
+                100%
+            );
+
+            min-height: 790px;
+
+            display: grid;
+
+            grid-template-columns:
+                0.95fr
+                1.05fr;
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                var(--border, #2a303b);
+
+            border-radius: 28px;
+
+            background:
+                var(--surface, #11151d);
+
+            box-shadow:
+                0 30px 80px
+                rgba(0, 0, 0, 0.30);
+        }
+
+
+        /* =========================================================
+           LEFT SIDE
+        ========================================================= */
+
+        .login-info {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            padding:
+                46px 44px
+                34px;
+
+            border-right:
+                1px solid
+                var(--border, #2a303b);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(37, 99, 235, 0.08),
+                    transparent 46%
+                ),
+                var(--surface-2, #151922);
+
+            overflow: hidden;
+        }
+
+
+        .login-info::before {
+            content: "";
+
+            position: absolute;
+
+            width: 340px;
+            height: 340px;
+
+            left: -150px;
+            top: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37, 99, 235, 0.06);
+
+            filter: blur(10px);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           BRAND
+        ========================================================= */
+
+        .login-brand {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            text-decoration: none;
+        }
+
+
+        .login-logo {
+            width: 50px;
+            height: 50px;
+
+            object-fit: contain;
+
+            border-radius: 13px;
+        }
+
+
+        .login-brand-name {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 21px;
+            font-weight: 750;
+        }
+
+
+        .login-demo {
+            padding:
+                4px 8px;
+
+            border:
+                1px solid
+                rgba(129, 140, 248, 0.35);
+
+            border-radius: 999px;
+
+            color: #a5b4fc;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        .login-brand-sub {
+            margin-top: 4px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           CONTENT LEFT
+        ========================================================= */
+
+        .ai-status {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 34px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 12px;
+        }
+
+
+        .ai-status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #10b981;
+
+            box-shadow:
+                0 0 12px
+                rgba(16, 185, 129, 0.6);
+        }
+
+
+        .login-info h2 {
+            position: relative;
+            z-index: 2;
+
+            margin:
+                25px 0
+                14px;
+
+            max-width: 470px;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 38px;
+
+            line-height: 1.17;
+
+            letter-spacing: -1px;
+        }
+
+
+        .login-info h2 span {
+            color:
+                var(--muted, #aab4c5);
+        }
+
+
+        .login-info-desc {
+            position: relative;
+            z-index: 2;
+
+            max-width: 480px;
+
+            margin: 0;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           NEW - AI ILLUSTRATION
+        ========================================================= */
+
+        .login-visual {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 25px;
+
+            padding: 1px;
+
+            border-radius: 19px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(59, 130, 246, 0.45),
+                    rgba(139, 92, 246, 0.15),
+                    rgba(16, 185, 129, 0.25)
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(0, 0, 0, 0.18);
+        }
+
+
+        .visual-inner {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 18px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(16, 21, 30, 0.96);
+        }
+
+
+        .visual-inner::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -70px;
+            top: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(59, 130, 246, 0.10);
+
+            filter: blur(10px);
+        }
+
+
+        .visual-top {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .visual-window-dots {
+            display: flex;
+
+            gap: 5px;
+        }
+
+
+        .visual-window-dots span {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(148, 163, 184, 0.35);
+        }
+
+
+        .visual-ai-chip {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                6px 9px;
+
+            border:
+                1px solid
+                rgba(16, 185, 129, 0.22);
+
+            border-radius: 999px;
+
+            background:
+                rgba(16, 185, 129, 0.07);
+
+            color: #6ee7b7;
+
+            font-size: 8px;
+            font-weight: 650;
+        }
+
+
+        .visual-ai-chip span {
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: #10b981;
+        }
+
+
+        /* =========================================================
+           VISUAL TRANSLATION
+        ========================================================= */
+
+        .visual-translation {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                38px
+                minmax(0, 1fr);
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .visual-card {
+            min-height: 125px;
+
+            padding: 14px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.14);
+
+            border-radius: 13px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+        }
+
+
+        .visual-card-label {
+            margin-bottom: 10px;
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 8px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+
+        .visual-source {
+            color:
+                var(--text, #ffffff);
+
+            font-size: 12px;
+
+            line-height: 1.65;
+        }
+
+
+        .visual-source strong {
+            color: #60a5fa;
+        }
+
+
+        .visual-result {
+            color:
+                var(--text, #ffffff);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            line-height: 1.65;
+        }
+
+
+        .visual-arrow {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: auto;
+
+            border:
+                1px solid
+                rgba(59, 130, 246, 0.25);
+
+            border-radius: 50%;
+
+            background:
+                rgba(59, 130, 246, 0.08);
+
+            color: #60a5fa;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           KEYWORD ANALYSIS
+        ========================================================= */
+
+        .visual-analysis {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 12px;
+
+            padding:
+                12px 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.12);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.02);
+        }
+
+
+        .visual-analysis-left {
+            min-width: 0;
+        }
+
+
+        .visual-analysis-title {
+            margin-bottom: 7px;
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 8px;
+            font-weight: 700;
+
+            letter-spacing: 0.9px;
+        }
+
+
+        .visual-keywords {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 6px;
+        }
+
+
+        .visual-keyword {
+            padding:
+                5px 8px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(59, 130, 246, 0.09);
+
+            color: #93c5fd;
+
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+
+        .visual-context-result {
+            flex-shrink: 0;
+
+            text-align: right;
+        }
+
+
+        .visual-context-result span {
+            display: block;
+
+            margin-bottom: 4px;
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 7px;
+        }
+
+
+        .visual-context-result strong {
+            color: #34d399;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
+
+        .login-features {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 9px;
+
+            margin-top: 21px;
+        }
+
+
+        .login-feature {
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                10px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.10);
+
+            border-radius: 11px;
+
+            background:
+                rgba(255, 255, 255, 0.018);
+
+            color:
+                var(--muted, #cbd5e1);
+
+            font-size: 9px;
+
+            line-height: 1.4;
+        }
+
+
+        .feature-icon {
+            width: 31px;
+            height: 31px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border:
+                1px solid
+                rgba(59, 130, 246, 0.25);
+
+            border-radius: 9px;
+
+            background:
+                rgba(59, 130, 246, 0.08);
+
+            color: #60a5fa;
+        }
+
+
+        .feature-icon i {
+            font-size: 12px;
+        }
+
+
+        .login-project {
+            position: relative;
+            z-index: 2;
+
+            margin-top: auto;
+
+            padding-top: 24px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           RIGHT SIDE
+        ========================================================= */
+
+        .login-panel {
+            position: relative;
+
+            padding:
+                55px 58px
+                42px;
+
+            background:
+                var(--surface, #0f131b);
+        }
+
+
+        .close-login {
+            position: absolute;
+
+            top: 28px;
+            right: 30px;
+
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                transparent;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+
+        .close-login:hover {
+            background:
+                var(--surface-2, #181d27);
+
+            color:
+                var(--text, #ffffff);
+        }
+
+
+        .login-eyebrow {
+            margin-bottom: 18px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+
+        .login-panel h1 {
+            margin: 0;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            letter-spacing: -1.2px;
+        }
+
+
+        .login-description {
+            max-width: 470px;
+
+            margin:
+                17px 0
+                32px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           PROVIDERS
+        ========================================================= */
+
+        .provider-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .provider-button {
+            width: 100%;
+            min-height: 65px;
+
+            display: grid;
+
+            grid-template-columns:
+                46px
+                1fr
+                46px;
+
+            align-items: center;
+
+            padding:
+                0 18px;
+
+            border:
+                1px solid
+                var(--border, #242a34);
+
+            border-radius: 14px;
+
+            background:
+                var(--surface-2, #171b23);
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 13px;
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.18s ease,
+                border-color 0.18s ease,
+                background 0.18s ease;
+        }
+
+
+        .provider-button:hover {
+            transform:
+                translateY(-1px);
+
+            border-color:
+                #3b82f6;
+
+            background:
+                var(--surface, #11151d);
+        }
+
+
+        .provider-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+        }
+
+
+        .google-icon {
+            font-size: 23px;
+        }
+
+
+        .apple-icon {
+            color: #ffffff;
+
+            font-size: 22px;
+        }
+
+
+        .phone-icon {
+            color: #a78bfa;
+
+            font-size: 18px;
+        }
+
+
+        .provider-arrow {
+            color:
+                var(--muted, #64748b);
+
+            opacity: 0;
+
+            transition:
+                0.18s ease;
+        }
+
+
+        .provider-button:hover
+        .provider-arrow {
+            opacity: 1;
+        }
+
+
+        /* =========================================================
+           OR / REGISTER / NOTE
+        ========================================================= */
+
+        .login-or {
+            display: flex;
+            align-items: center;
+
+            gap: 14px;
+
+            margin:
+                29px 0
+                22px;
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 10px;
+        }
+
+
+        .login-or::before,
+        .login-or::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background:
+                var(--border, #242a34);
+        }
+
+
+        .register-line {
+            text-align: center;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 11px;
+        }
+
+
+        .register-line a {
+            margin-left: 6px;
+
+            color:
+                var(--text, #ffffff);
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        .register-line a:hover {
+            color: #60a5fa;
+        }
+
+
+        .demo-note {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 10px;
+
+            margin-top: 40px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid
+                var(--border, #242a34);
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .login-modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0, 0, 0, 0.68);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+
+        .login-modal-overlay.show {
+            display: flex;
+        }
+
+
+        .login-modal {
+            width: min(
+                470px,
+                100%
+            );
+
+            overflow: hidden;
+
+            border:
+                1px solid
+                var(--border, #2b313d);
+
+            border-radius: 22px;
+
+            background:
+                var(--surface, #11151d);
+
+            box-shadow:
+                0 30px 90px
+                rgba(0, 0, 0, 0.50);
+        }
+
+
+        .modal-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                20px 22px;
+
+            border-bottom:
+                1px solid
+                var(--border, #242a34);
+        }
+
+
+        .modal-provider {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .modal-provider-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+                var(--surface-2, #191e27);
+
+            font-size: 21px;
+        }
+
+
+        .modal-provider-info strong {
+            display: block;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 13px;
+        }
+
+
+        .modal-provider-info span {
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 9px;
+        }
+
+
+        .modal-close {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+
+        .modal-content {
+            padding:
+                25px 24px
+                24px;
+        }
+
+
+        .modal-content h2 {
+            margin:
+                0 0 7px;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 22px;
+        }
+
+
+        .modal-content > p {
+            margin:
+                0 0 24px;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           FORM MODAL
+        ========================================================= */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color:
+                var(--muted, #cbd5e1);
+
+            font-size: 10px;
+            font-weight: 650;
+        }
+
+
+        .login-input-wrap {
+            position: relative;
+        }
+
+
+        .login-input-wrap i {
+            position: absolute;
+
+            top: 50%;
+            left: 15px;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                var(--muted, #64748b);
+
+            font-size: 13px;
+        }
+
+
+        .login-input {
+            width: 100%;
+            height: 52px;
+
+            padding:
+                0 15px
+                0 43px;
+
+            border:
+                1px solid
+                var(--border, #303643);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background:
+                var(--surface-2, #171b23);
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 12px;
+        }
+
+
+        .login-input:focus {
+            border-color:
+                #3b82f6;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(59, 130, 246, 0.10);
+        }
+
+
+        .form-error {
+            min-height: 17px;
+
+            margin-top: 7px;
+
+            color: #ef4444;
+
+            font-size: 9px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 9px;
+        }
+
+
+        .modal-secondary,
+        .modal-primary {
+            min-height: 48px;
+
+            border-radius: 11px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        .modal-secondary {
+            width: 110px;
+
+            border:
+                1px solid
+                var(--border, #303643);
+
+            background:
+                transparent;
+
+            color:
+                var(--muted, #cbd5e1);
+        }
+
+
+        .modal-primary {
+            flex: 1;
+
+            border:
+                1px solid #2563eb;
+
+            background:
+                #2563eb;
+
+            color:
+                #ffffff;
+        }
+
+
+        /* =========================================================
+           SUCCESS
+        ========================================================= */
+
+        .success-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 10000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(0, 0, 0, 0.75);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+
+        .success-box {
+            width: min(
+                360px,
+                calc(100% - 30px)
+            );
+
+            padding:
+                32px 25px;
+
+            border:
+                1px solid
+                var(--border, #303643);
+
+            border-radius: 20px;
+
+            background:
+                var(--surface, #11151d);
+
+            text-align: center;
+        }
+
+
+        .success-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin:
+                0 auto 16px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(16, 185, 129, 0.12);
+
+            color:
+                #10b981;
+
+            font-size: 23px;
+        }
+
+
+        .success-box h3 {
+            margin:
+                0 0 8px;
+
+            color:
+                var(--text, #ffffff);
+
+            font-size: 19px;
+        }
+
+
+        .success-box p {
+            margin: 0;
+
+            color:
+                var(--muted, #94a3b8);
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media
+        (max-width: 1000px) {
+
+            body {
+                align-items:
+                    flex-start;
+            }
+
+
+            .login-shell {
+                grid-template-columns:
+                    1fr;
+
+                max-width: 680px;
+            }
+
+
+            .login-info {
+                border-right: none;
+
+                border-bottom:
+                    1px solid
+                    var(--border, #2a303b);
+            }
+
+
+            .login-project {
+                margin-top: 25px;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media
+        (max-width: 600px) {
+
+            body {
+                padding: 10px;
+            }
+
+
+            .login-shell {
+                border-radius: 20px;
+            }
+
+
+            .login-info {
+                padding:
+                    28px 20px;
+            }
+
+
+            .login-info h2 {
+                font-size: 29px;
+            }
+
+
+            .login-info-desc {
+                font-size: 12px;
+            }
+
+
+            .visual-translation {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .visual-arrow {
+                transform:
+                    rotate(90deg);
+            }
+
+
+            .visual-card {
+                min-height: auto;
+            }
+
+
+            .visual-analysis {
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .visual-context-result {
+                text-align:
+                    left;
+            }
+
+
+            .login-features {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .login-panel {
+                padding:
+                    40px 22px
+                    30px;
+            }
+
+
+            .close-login {
+                top: 16px;
+                right: 16px;
+            }
+
+
+            .login-panel h1 {
+                font-size: 34px;
+            }
+
+
+            .provider-button {
+                min-height: 58px;
+
+                grid-template-columns:
+                    40px
+                    1fr
+                    30px;
+
+                padding:
+                    0 12px;
+
+                font-size: 11px;
+            }
+
+
+            .modal-actions {
+                flex-direction:
+                    column-reverse;
+            }
+
+
+            .modal-secondary,
+            .modal-primary {
+                width: 100%;
+            }
+
+        }
+
+
+/* AUTH ADAPTIVE THEME & FINISH */
+html[data-theme="light"] { color-scheme:light; }
+html[data-theme="dark"] { color-scheme:dark; }
+html[data-theme="light"] body {background:radial-gradient(circle at 25% 5%,rgba(66,133,220,.1),transparent 45%),#e5e9ef;color:#172235;}
+html[data-theme="light"] .login-shell,
+html[data-theme="light"] .register-shell {background:#fff;border-color:#ced6e1;box-shadow:0 24px 60px rgba(34,48,70,.12);}
+html[data-theme="light"] .login-info,
+html[data-theme="light"] .register-info {background:linear-gradient(145deg,#eaf2fc 0%,#f4f7fb 58%,#ecf1f7 100%);border-right-color:#d5deea;}
+html[data-theme="light"] .login-panel,
+html[data-theme="light"] .register-panel {background:#fff;color:#172235;}
+html[data-theme="light"] .login-brand-name,
+html[data-theme="light"] .register-brand-name,
+html[data-theme="light"] .login-info h2,
+html[data-theme="light"] .register-info h2,
+html[data-theme="light"] .login-panel h1,
+html[data-theme="light"] .register-panel h1,
+html[data-theme="light"] .login-feature,
+html[data-theme="light"] .benefit-content strong,
+html[data-theme="light"] .step-card strong,
+html[data-theme="light"] .form-group label {color:#1c2a3f;}
+html[data-theme="light"] .login-info h2 span,
+html[data-theme="light"] .register-info h2 span {color:#36619a;}
+html[data-theme="light"] .login-info-desc,
+html[data-theme="light"] .register-description,
+html[data-theme="light"] .login-description,
+html[data-theme="light"] .register-panel-description,
+html[data-theme="light"] .login-brand-sub,
+html[data-theme="light"] .register-brand-sub,
+html[data-theme="light"] .register-project,
+html[data-theme="light"] .login-project,
+html[data-theme="light"] .step-card span,
+html[data-theme="light"] .benefit-content span {color:#58697f;}
+html[data-theme="light"] .benefit-row,
+html[data-theme="light"] .step-card,
+html[data-theme="light"] .login-feature {background:rgba(255,255,255,.7);border-color:#d8e1eb;}
+html[data-theme="light"] .login-visual,
+html[data-theme="light"] .visual-inner {background:#f5f8fd;border-color:#cddbea;}
+html[data-theme="light"] .visual-card,
+html[data-theme="light"] .visual-analysis {background:#fff;border-color:#d9e2ed;}
+html[data-theme="light"] .visual-source,
+html[data-theme="light"] .visual-result,
+html[data-theme="light"] .visual-context-result strong {color:#21324d;}
+html[data-theme="light"] .register-panel .form-input,
+html[data-theme="light"] .login-modal .login-input,
+html[data-theme="light"] .provider-button {background:#f7f9fc;border-color:#cfd9e6;color:#1c2a3f;}
+html[data-theme="light"] .register-panel .form-input::placeholder,
+html[data-theme="light"] .login-modal .login-input::placeholder {color:#75839a;}
+html[data-theme="light"] .register-panel .input-icon,
+html[data-theme="light"] .register-panel .show-password,
+html[data-theme="light"] .close-register,
+html[data-theme="light"] .close-login {color:#52657c;}
+html[data-theme="light"] .login-modal,
+html[data-theme="light"] .success-card,
+html[data-theme="light"] .success-box {background:#fff;color:#1c2a3f;border-color:#d6e0eb;}
+html[data-theme="light"] .modal-top,
+html[data-theme="light"] .modal-provider,
+html[data-theme="light"] .modal-content,
+html[data-theme="light"] .modal-content h2 {color:#1c2a3f;}
+/* Tidy up panels without using decorative stock photos */
+.login-shell,.register-shell {transition:background-color .25s,border-color .25s;}
+.login-info,.register-info {isolation:isolate;}
+.auth-demo-preview {position:relative;z-index:1;margin:24px 0 10px;padding:18px;border:1px solid var(--border,#394356);border-radius:18px;background:var(--surface,#1b2536);box-shadow:0 10px 28px rgba(0,0,0,.08);}
+.auth-preview-top {display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;font-weight:750;color:var(--muted,#a2b2c5);margin-bottom:15px;}
+.auth-preview-top i {color:#2bbd96;}
+.auth-preview-pair {display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:9px;align-items:stretch;}
+.auth-preview-box {min-width:0;padding:12px;border:1px solid var(--border,#394356);border-radius:11px;background:var(--surface-2,#222c3e);color:var(--text,#eef3fa);font-size:12px;line-height:1.6;}
+.auth-preview-box small {display:block;letter-spacing:1px;color:var(--muted,#9fadc0);font-size:9px;margin-bottom:7px;}
+.auth-preview-arrow {display:grid;place-items:center;color:#4d94f8;}
+.auth-preview-foot {display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;font-size:10px;color:var(--muted,#9fadc0);}
+.auth-preview-foot span {padding:5px 9px;border-radius:999px;background:rgba(40,156,134,.1);border:1px solid rgba(40,156,134,.16);}
+html[data-theme="light"] .auth-demo-preview {background:#fff;border-color:#d0dbe8;}
+html[data-theme="light"] .auth-preview-box {background:#f7faff;border-color:#d6e1ed;color:#223149;}
+html[data-theme="light"] .auth-preview-top,html[data-theme="light"] .auth-preview-foot {color:#596e84;}
+@media (max-width:720px){.auth-preview-pair{grid-template-columns:1fr}.auth-preview-arrow{transform:rotate(90deg)}}
+
+    
+.provider-button:disabled, .provider-button[aria-disabled="true"] {
+    opacity: .62;
+    cursor: not-allowed;
+    border-style: dashed;
+}
+.provider-button:disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Responsive fixes */
+
+@media(max-width:760px){
+ .login-layout,.login-container,.login-main,.login-page{max-width:100%;min-width:0;}
+ .login-grid,.login-shell,.login-wrapper{grid-template-columns:minmax(0,1fr)!important;}
+ .login-panel,.login-aside,.login-hero,.login-modal{max-width:100%;min-width:0;}
+ .login-modal{width:calc(100vw - 24px)!important;max-height:calc(100dvh - 24px);overflow-y:auto;}
+ .modal-actions{flex-wrap:wrap;}
+ .provider-button{min-width:0;}
+}
+
+
+/* Harmonized dark/light sign-in panel */
+.login-shell {border-color:rgba(96,165,250,.25)!important;box-shadow:0 20px 64px rgba(0,0,0,.24)!important;}
+.login-left,.login-panel {background:linear-gradient(150deg,var(--surface),var(--surface-2))!important;color:var(--text)!important;}
+.login-input {background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--border)!important;}
+.google-icon svg {display:block;width:23px;height:23px;}
+
+
+/* ===== Compact auth page refinement ===== */
+body,
+button,
+input {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.auth-panel-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-right: 48px;
+}
+
+.auth-panel-brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.auth-panel-logo {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.24);
+    color: #8ab4ff;
+    flex-shrink: 0;
+}
+
+.auth-panel-logo i {
+    font-size: 14px;
+}
+
+.auth-panel-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.auth-panel-brand-text strong {
+    color: var(--text, #ffffff);
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 750;
+}
+
+.auth-panel-brand-text small {
+    color: var(--muted, #8da0b8);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.register-line,
+.login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 22px auto 0;
+    color: var(--muted, #8ea0b8);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.register-line a,
+.login-link a {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.register-line a:hover,
+.login-link a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+.login-shell {
+    width: min(720px, calc(100vw - 36px)) !important;
+    min-height: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    border-radius: 26px !important;
+}
+
+.login-info {
+    display: none !important;
+}
+
+.login-panel {
+    padding: 34px 38px 30px !important;
+    background: linear-gradient(160deg, var(--surface, #111722), var(--surface-2, #1b2230)) !important;
+}
+
+.close-login {
+    top: 18px;
+    right: 18px;
+}
+
+.login-eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+}
+
+.login-panel h1 {
+    font-size: 30px !important;
+    line-height: 1.12;
+    letter-spacing: -0.8px;
+}
+
+.login-description {
+    max-width: none;
+    margin: 14px 0 24px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.provider-list {
+    gap: 12px;
+}
+
+.provider-button {
+    min-height: 58px;
+    border-radius: 16px;
+    font-size: 14px;
+}
+
+.provider-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.demo-note {
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 11px;
+}
+
+.modal-content h2,
+.login-panel h1,
+.register-panel h1 {
+    font-weight: 800;
+}
+
+html[data-theme="light"] .login-shell {
+    background: #ffffff !important;
+    border-color: #d7dfeb !important;
+    box-shadow: 0 28px 70px rgba(35, 52, 84, 0.14) !important;
+}
+
+html[data-theme="light"] .login-panel {
+    background: linear-gradient(160deg, #ffffff, #f8fbff) !important;
+}
+
+html[data-theme="light"] .auth-panel-logo {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: #c9d9ee;
+    color: #2563eb;
+}
+
+html[data-theme="light"] .auth-panel-brand-text strong {
+    color: #1e2b43;
+}
+
+html[data-theme="light"] .auth-panel-brand-text small,
+html[data-theme="light"] .register-line,
+html[data-theme="light"] .login-link {
+    color: #60728a;
+}
+
+html[data-theme="light"] .register-line a,
+html[data-theme="light"] .login-link a {
+    color: #1d4ed8;
+}
+
+@media (max-width: 640px) {
+    .login-shell {
+        width: min(100%, calc(100vw - 20px)) !important;
+        border-radius: 22px !important;
+    }
+
+    .login-panel {
+        padding: 28px 18px 24px !important;
+    }
+
+    .auth-panel-brand {
+        margin-bottom: 16px;
+        padding-right: 40px;
+    }
+
+    .auth-panel-brand-text strong {
+        font-size: 17px;
+    }
+
+    .login-panel h1 {
+        font-size: 28px !important;
+    }
+
+    .login-description,
+    .register-line,
+    .register-line a,
+    .login-link,
+    .login-link a {
+        font-size: 13px;
+    }
+}
+
+
+/* ===== 2026-10-22 AUTH BRAND + TYPOGRAPHY OVERRIDES ===== */
+.auth-panel-brand-link { gap: 10px !important; align-items: center !important; }
+.auth-panel-logo { width: 32px !important; height: 32px !important; min-width: 32px !important; padding: 0 !important; background: transparent !important; border: 0 !important; box-shadow: none !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+.auth-panel-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
+.auth-panel-brand-text strong { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 18px !important; font-weight: 800 !important; letter-spacing: -0.02em !important; }
+.auth-panel-brand-text small { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 12px !important; }
+.login-brand, .register-brand { display: inline-flex !important; align-items: center !important; gap: 10px !important; }
+.login-logo, .register-logo { width: 36px !important; height: 36px !important; flex: 0 0 36px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+.login-logo img, .register-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
+.login-panel h1, .register-panel h1 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 58px !important; font-weight: 800 !important; line-height: 1.04 !important; letter-spacing: -0.04em !important; color: #172235 !important; text-shadow: none !important; -webkit-text-stroke: 0 !important; margin: 0 0 14px !important; }
+html[data-theme="dark"] .login-panel h1, html[data-theme="dark"] .register-panel h1 { color: #f8fbff !important; }
+.register-line, .login-link, .register-line a, .login-link a { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 14px !important; letter-spacing: 0 !important; }
+html[data-theme="light"] .register-line, html[data-theme="light"] .login-link { color: #4f607a !important; }
+html[data-theme="light"] .register-line a, html[data-theme="light"] .login-link a { color: #2563eb !important; font-weight: 700 !important; }
+
+
+/* Correct oversize title and match the compact Google-login title typography */
+.login-panel h1,.register-panel h1{font-family:Arial,"Segoe UI",sans-serif!important;font-size:30px!important;font-weight:700!important;line-height:1.2!important;letter-spacing:-.02em!important;margin:0 0 12px!important;text-shadow:none!important;-webkit-text-stroke:0!important}
+.auth-panel-brand-text .brand-ai,.login-brand-name .brand-ai,.register-brand-name .brand-ai{color:#249bfa!important}
+html[data-theme="light"] .auth-panel-brand-text .brand-ai{color:#1680e5!important}
+.auth-panel-logo{width:38px!important;height:38px!important;min-width:38px!important}
+.auth-panel-logo img{width:38px!important;height:38px!important;object-fit:contain!important}
+@media(max-width:600px){.login-panel h1,.register-panel h1{font-size:27px!important}}
+
+
+/* =========================================================
+   GOOGLE LOGIN POPUP - FONT FIX (CORRECT CLASS SELECTORS)
+   Only affects the demo login popup, not the main sign-in.
+========================================================= */
+.login-modal,
+.login-modal button,
+.login-modal input,
+.login-modal label {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+    letter-spacing: normal;
+}
+
+/* Google title: compact, natural, readable */
+.login-modal .modal-content #modalTitle {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.35px !important;
+    margin: 0 0 10px !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0 !important;
+    color: var(--text, #f4f7fb) !important;
+}
+
+.login-modal .modal-provider-info strong {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+.login-modal .modal-provider-info span {
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    line-height: 1.45 !important;
+}
+.login-modal .modal-content > p {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+}
+.login-modal .form-group label {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+}
+.login-modal .login-input {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+.login-modal .login-input::placeholder {
+    font-weight: 400;
+    opacity: .9;
+}
+.login-modal .modal-secondary,
+.login-modal .modal-primary {
+    font-size: 13px !important;
+    font-weight: 650 !important;
+}
+html[data-theme="light"] .login-modal .modal-content #modalTitle {
+    color: #1b263a !important;
+}
+html[data-theme="dark"] .login-modal .modal-content #modalTitle {
+    color: #f1f5f9 !important;
+}
+@media (max-width: 600px) {
+    .login-modal .modal-content #modalTitle {
+        font-size: 22px !important;
+    }
+}
+
+</style>
+
+
+<link rel="stylesheet" href="css/identity-auth.css?v=20261023" />
+<link rel="stylesheet" href="css/final-static-polish.css?v=20261023-final"/>
+</head>
+
+
+<body>
+
+
+<main class="login-shell">
+
+
+    <!-- =====================================================
+         LEFT SIDE
+    ====================================================== -->
+
+    <section class="login-info">
+
+
+        <a
+            href="index.html"
+            class="login-brand"
+        >
+
+            
+
+
+            <span class="login-logo"><img src="images/transense-logo-mark.png" alt="Transense AI logo"></span>
+<div>
+
+                <div class="login-brand-name">
+
+                    Transense <span class="brand-ai">AI</span>
+
+                    
+
+                </div>
+
+
+                <div class="login-brand-sub">
+                    Context-aware Translation
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <div class="ai-status">
+
+            <span class="ai-status-dot"></span>
+
+            Dịch thuật hỗ trợ bởi AI
+
+        </div>
+
+
+        <h2>
+
+            Dịch chính xác hơn khi
+
+            <span>
+                hiểu đúng ngữ cảnh.
+            </span>
+
+        </h2>
+
+
+        <p class="login-info-desc">
+
+            Transense AI phân tích từ khóa,
+            từ đa nghĩa và nội dung xung quanh
+            để lựa chọn nghĩa phù hợp,
+            thay vì chỉ dịch từng từ riêng lẻ.
+
+        </p>
+
+
+        <!-- =================================================
+             NEW ILLUSTRATION
+        ================================================== -->
+
+        <div class="login-visual">
+
+
+            <div class="visual-inner">
+
+
+                <div class="visual-top">
+
+
+                    <div class="visual-window-dots">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="visual-ai-chip">
+
+                        <span></span>
+
+                        AI Context Preview
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="visual-translation">
+
+
+                    <!-- SOURCE -->
+
+                    <div class="visual-card">
+
+
+                        <div class="visual-card-label">
+                            ENGLISH
+                        </div>
+
+
+                        <div class="visual-source">
+
+                            I went to the
+
+                            <strong>
+                                bank
+                            </strong>
+
+                            to withdraw some money.
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- ARROW -->
+
+                    <div class="visual-arrow">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div class="visual-card">
+
+
+                        <div class="visual-card-label">
+                            TIẾNG VIỆT
+                        </div>
+
+
+                        <div class="visual-result">
+
+                            Tôi đến
+
+                            <strong style="color:#34d399;">
+                                ngân hàng
+                            </strong>
+
+                            để rút một ít tiền.
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- CONTEXT ANALYSIS -->
+
+                <div class="visual-analysis">
+
+
+                    <div class="visual-analysis-left">
+
+
+                        <div class="visual-analysis-title">
+                            TỪ KHÓA NGỮ CẢNH
+                        </div>
+
+
+                        <div class="visual-keywords">
+
+                            <span class="visual-keyword">
+                                bank
+                            </span>
+
+                            <span class="visual-keyword">
+                                withdraw
+                            </span>
+
+                            <span class="visual-keyword">
+                                money
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="visual-context-result">
+
+                        <span>
+                            AI XÁC ĐỊNH
+                        </span>
+
+                        <strong>
+                            Ngữ cảnh tài chính
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================== -->
+
+        <div class="login-features">
+
+
+            <div class="login-feature">
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-language"></i>
+
+                </div>
+
+                <span>
+                    Dịch theo ngữ cảnh
+                </span>
+
+            </div>
+
+
+            <div class="login-feature">
+
+                <div class="feature-icon">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                </div>
+
+                <span>
+                    Lịch sử bản dịch
+                </span>
+
+            </div>
+
+
+            <div class="login-feature">
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                </div>
+
+                <span>
+                    AI Context Analysis
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="login-project">
+
+            Đồ án 1 · Ngành Khoa học Máy tính · 2026
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         RIGHT SIDE - GIỮ NGUYÊN
+    ====================================================== -->
+
+    <section class="login-panel">
+
+        <div class="auth-panel-brand">
+            <a href="index.html" class="auth-panel-brand-link">
+                <span class="auth-panel-logo"><img src="images/transense-logo-mark.png" alt="Transense AI logo"></span>
+                <span class="auth-panel-brand-text">
+                    <strong>Transense <span class="brand-ai">AI</span></strong>
+                    <small>Dịch Văn Bản Theo Ngữ Cảnh</small>
+                </span>
+            </a>
+        </div>
+
+
+        <button
+            class="close-login"
+            type="button"
+            onclick="window.location.href='index.html'"
+        >
+            ×
+        </button>
+
+
+        <div class="login-eyebrow">
+            ĐĂNG NHẬP TÀI KHOẢN
+        </div>
+
+
+        <h1>
+            Đăng Nhập
+        </h1>
+
+
+        <p class="login-description">
+
+            Đăng nhập để sử dụng dịch AI theo ngữ cảnh,
+            quản lý lịch sử bản dịch
+            và thông tin tài khoản.
+
+        </p>
+
+
+        <div class="provider-list">
+
+
+            <!-- GOOGLE -->
+
+            <button
+                class="provider-button"
+                type="button"
+                onclick="openLoginModal('google')"
+            >
+
+                <div class="provider-icon">
+
+                    <span class="google-icon">
+
+                        <svg viewBox="0 0 48 48" width="23" height="23" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.73 1.22 9.24 3.6l6.9-6.9C35.95 2.4 30.38 0 24 0 14.63 0 6.51 5.38 2.56 13.22l8.03 6.24C12.48 13.5 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.64-.14-2.86-.44-4.13H24v8.02h12.94c-.26 2.08-1.67 5.22-4.8 7.33l7.39 5.72C43.97 37.31 46.5 31.45 46.5 24.5z"/><path fill="#FBBC05" d="M10.59 28.54A14.49 14.49 0 0 1 9.5 24c0-1.58.28-3.1.78-4.54l-8.03-6.24A23.96 23.96 0 0 0 0 24c0 3.87.92 7.53 2.56 10.78l8.03-6.24z"/><path fill="#34A853" d="M24 48c6.48 0 11.92-2.13 15.89-5.8l-7.39-5.72c-1.98 1.38-4.65 2.34-8.5 2.34-6.26 0-11.52-4-13.41-9.96l-8.03 6.24C6.51 42.62 14.63 48 24 48z"/></svg>
+
+                    </span>
+
+                </div>
+
+
+                <span>
+                    Tiếp tục với Google
+                </span>
+
+
+                <span class="provider-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- APPLE -->
+
+            <button
+                class="provider-button"
+                type="button"
+                disabled aria-disabled="true" data-unavailable="apple"
+            >
+
+                <div class="provider-icon">
+
+                    <i
+                        class="fa-brands fa-apple apple-icon"
+                    ></i>
+
+                </div>
+
+
+                <span>
+                    Tiếp tục với Apple
+                </span>
+
+
+                <span class="provider-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- PHONE -->
+
+            <button
+                class="provider-button"
+                type="button"
+                disabled aria-disabled="true" data-unavailable="phone"
+            >
+
+                <div class="provider-icon">
+
+                    <i
+                        class="fa-solid fa-mobile-screen-button phone-icon"
+                    ></i>
+
+                </div>
+
+
+                <span>
+                    Tiếp tục với Điện thoại
+                </span>
+
+
+                <span class="provider-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+        <div class="login-or">
+            hoặc
+        </div>
+
+
+        <div class="register-line">
+
+            Chưa có tài khoản?
+
+            <a href="register.html">
+                Tạo tài khoản
+            </a>
+
+        </div>
+
+
+        <div class="demo-note">
+
+            <i class="fa-regular fa-circle-info"></i>
+
+            <span>
+
+                Đây là phiên bản demo.
+                Các nút Google, Apple và Điện thoại
+                mô phỏng luồng đăng nhập.
+                Thông tin chỉ được lưu cục bộ
+                trên trình duyệt.
+
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     LOGIN MODAL
+========================================================= -->
+
+<div
+    class="login-modal-overlay"
+    id="loginModalOverlay"
+>
+
+
+    <div
+        class="login-modal"
+        id="loginModal"
+    >
+
+
+        <div class="modal-top">
+
+
+            <div class="modal-provider">
+
+
+                <div
+                    class="modal-provider-icon"
+                    id="modalProviderIcon"
+                >
+
+                    <svg viewBox="0 0 48 48" width="23" height="23" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.73 1.22 9.24 3.6l6.9-6.9C35.95 2.4 30.38 0 24 0 14.63 0 6.51 5.38 2.56 13.22l8.03 6.24C12.48 13.5 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.64-.14-2.86-.44-4.13H24v8.02h12.94c-.26 2.08-1.67 5.22-4.8 7.33l7.39 5.72C43.97 37.31 46.5 31.45 46.5 24.5z"/><path fill="#FBBC05" d="M10.59 28.54A14.49 14.49 0 0 1 9.5 24c0-1.58.28-3.1.78-4.54l-8.03-6.24A23.96 23.96 0 0 0 0 24c0 3.87.92 7.53 2.56 10.78l8.03-6.24z"/><path fill="#34A853" d="M24 48c6.48 0 11.92-2.13 15.89-5.8l-7.39-5.72c-1.98 1.38-4.65 2.34-8.5 2.34-6.26 0-11.52-4-13.41-9.96l-8.03 6.24C6.51 42.62 14.63 48 24 48z"/></svg>
+
+                </div>
+
+
+                <div class="modal-provider-info">
+
+                    <strong id="modalProviderTitle">
+                        Google
+                    </strong>
+
+                    <span>
+                        Transense AI Demo Login
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="modal-close"
+                type="button"
+                onclick="closeLoginModal()"
+            >
+                ×
+            </button>
+
+
+        </div>
+
+
+        <div class="modal-content">
+
+
+            <h2 id="modalTitle">
+                Đăng nhập với Google
+            </h2>
+
+
+            <p id="modalDescription">
+
+                Nhập thông tin tài khoản
+                để tiếp tục đến Transense AI.
+
+            </p>
+
+
+            <form
+                id="demoLoginForm"
+                novalidate
+            >
+
+
+                <div class="form-group">
+
+                    <label for="demoUserName" id="primaryFieldLabel">
+                        Mật khẩu
+                    </label>
+
+
+                    <div class="login-input-wrap">
+
+                        <i class="fa-solid fa-lock" id="primaryFieldIcon"></i>
+
+                        <input
+                            id="demoUserName"
+                            class="login-input"
+                            type="password"
+                            placeholder="Ít nhất 8 ký tự"
+                            autocomplete="current-password"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-error"
+                        id="nameError"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="emailGroup"
+                >
+
+                    <label for="demoUserEmail">
+                        Email
+                    </label>
+
+
+                    <div class="login-input-wrap">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            id="demoUserEmail"
+                            class="login-input"
+                            type="email"
+                            placeholder="example@gmail.com"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-error"
+                        id="emailError"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    class="form-group"
+                    id="phoneGroup"
+                    style="display:none;"
+                >
+
+                    <label for="demoUserPhone">
+                        Số điện thoại
+                    </label>
+
+
+                    <div class="login-input-wrap">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <input
+                            id="demoUserPhone"
+                            class="login-input"
+                            type="tel"
+                            placeholder="09xxxxxxxx"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-error"
+                        id="phoneError"
+                    ></div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+
+                    <button
+                        class="modal-secondary"
+                        type="button"
+                        onclick="closeLoginModal()"
+                    >
+                        Quay lại
+                    </button>
+
+
+                    <button
+                        class="modal-primary"
+                        id="modalContinueButton"
+                        type="submit"
+                    >
+                        Tiếp tục
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     SUCCESS
+========================================================= -->
+
+<div
+    class="success-overlay"
+    id="successOverlay"
+>
+
+
+    <div class="success-box">
+
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h3>
+            Đăng nhập thành công
+        </h3>
+
+
+        <p id="successMessage">
+
+            Đang chuyển đến Transense AI...
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    const loginModalOverlay =
+        document.getElementById(
+            "loginModalOverlay"
+        );
+
+
+    const loginModal =
+        document.getElementById(
+            "loginModal"
+        );
+
+
+    const modalProviderIcon =
+        document.getElementById(
+            "modalProviderIcon"
+        );
+
+
+    const modalProviderTitle =
+        document.getElementById(
+            "modalProviderTitle"
+        );
+
+
+    const modalTitle =
+        document.getElementById(
+            "modalTitle"
+        );
+
+
+    const modalDescription =
+        document.getElementById(
+            "modalDescription"
+        );
+
+
+    const demoLoginForm =
+        document.getElementById(
+            "demoLoginForm"
+        );
+
+
+    const demoUserName =
+        document.getElementById(
+            "demoUserName"
+        );
+
+    const primaryFieldLabel =
+        document.getElementById(
+            "primaryFieldLabel"
+        );
+
+    const primaryFieldIcon =
+        document.getElementById(
+            "primaryFieldIcon"
+        );
+
+
+    const demoUserEmail =
+        document.getElementById(
+            "demoUserEmail"
+        );
+
+
+    const demoUserPhone =
+        document.getElementById(
+            "demoUserPhone"
+        );
+
+
+    const emailGroup =
+        document.getElementById(
+            "emailGroup"
+        );
+
+
+    const phoneGroup =
+        document.getElementById(
+            "phoneGroup"
+        );
+
+
+    const nameError =
+        document.getElementById(
+            "nameError"
+        );
+
+
+    const emailError =
+        document.getElementById(
+            "emailError"
+        );
+
+
+    const phoneError =
+        document.getElementById(
+            "phoneError"
+        );
+
+
+    const modalContinueButton =
+        document.getElementById(
+            "modalContinueButton"
+        );
+
+
+    const successOverlay =
+        document.getElementById(
+            "successOverlay"
+        );
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    let selectedProvider =
+        "google";
+
+
+    const primaryFieldGroup =
+        primaryFieldLabel
+            .closest(
+                ".form-group"
+            );
+
+
+    if (
+        emailGroup
+        &&
+        primaryFieldGroup
+        &&
+        primaryFieldGroup.parentNode
+    ) {
+
+        primaryFieldGroup.parentNode.insertBefore(
+            emailGroup,
+            primaryFieldGroup
+        );
+
+    }
+
+
+    /* =====================================================
+       AUTH LANGUAGE HELPER
+    ====================================================== */
+
+    function getAuthUiText() {
+
+        const currentLang = (window.TransenseI18n && window.TransenseI18n.language) || (navigator.languages?.[0] || navigator.language || "en").toLowerCase().split("-")[0];
+
+        if (currentLang === "vi") {
+            return {
+                isVi: true,
+                loginTitle: "Đăng Nhập",
+                noAccount: "Chưa có tài khoản?",
+                createAccount: "Tạo tài khoản",
+                demoNote: "Đây là phiên bản demo. Các nút Google, Apple và Điện thoại mô phỏng luồng đăng nhập. Thông tin chỉ được lưu cục bộ trên trình duyệt.",
+                demoLoginCaption: "Transense AI Demo Login",
+                providerGoogle: "Đăng nhập với Google",
+                providerApple: "Đăng nhập với Apple",
+                providerPhone: "Đăng nhập bằng số điện thoại",
+                descGoogle: "Nhập email Gmail và mật khẩu để tiếp tục đến Transense AI.",
+                descApple: "Nhập email Apple ID và mật khẩu demo để tiếp tục đến Transense AI.",
+                descPhone: "Nhập số điện thoại và mật khẩu để tiếp tục đến Transense AI.",
+                email: "Email",
+                password: "Mật khẩu",
+                phone: "Số điện thoại",
+                back: "Quay lại",
+                cont: "Tiếp tục",
+                show: "Hiện",
+                hide: "Ẩn",
+                passwordPlaceholder: "Ít nhất 8 ký tự",
+                passwordRequired: "Vui lòng nhập mật khẩu tối thiểu 8 ký tự.",
+                wrongCredentials: "Email hoặc mật khẩu demo chưa chính xác.",
+                emailRequired: "Vui lòng nhập địa chỉ email hợp lệ.",
+                gmailRequired: "Demo Google yêu cầu tài khoản @gmail.com.",
+                phoneRequired: "Vui lòng nhập số điện thoại hợp lệ.",
+                phonePasswordRequired: "Vui lòng nhập mật khẩu tối thiểu 8 ký tự.",
+                success: "Đăng nhập thành công! Đang chuyển tới trang chính..."
+            };
+        }
+
+        return {
+            isVi: false,
+            loginTitle: "Sign In",
+            noAccount: "Don’t have an account?",
+            createAccount: "Create account",
+            demoNote: "This is a demo version. Google, Apple, and Phone buttons simulate the sign-in flow. Data is stored locally in your browser only.",
+            demoLoginCaption: "Transense AI Demo Login",
+            providerGoogle: "Sign in with Google",
+            providerApple: "Sign in with Apple",
+            providerPhone: "Sign in with phone number",
+            descGoogle: "Enter your Gmail address and password to continue to Transense AI.",
+            descApple: "Enter your Apple ID email and demo password to continue to Transense AI.",
+            descPhone: "Enter your phone number and password to continue to Transense AI.",
+            email: "Email",
+            password: "Password",
+            phone: "Phone number",
+            back: "Back",
+            cont: "Continue",
+            show: "Show",
+            hide: "Hide",
+            passwordPlaceholder: "At least 8 characters",
+            passwordRequired: "Please enter a password with at least 8 characters.",
+            wrongCredentials: "Incorrect demo email or password.",
+            emailRequired: "Please enter a valid email address.",
+            gmailRequired: "Google demo requires a @gmail.com account.",
+            phoneRequired: "Please enter a valid phone number.",
+            phonePasswordRequired: "Please enter a password with at least 8 characters.",
+            success: "Login successful! Redirecting to the main page..."
+        };
+    }
+
+    function applyLoginPageTranslations() {
+        const t = getAuthUiText();
+        const h1 = document.querySelector('.login-panel h1');
+        const desc = document.querySelector('.login-description');
+        if (desc) desc.textContent = t.isVi
+            ? 'Đăng nhập để sử dụng dịch AI theo ngữ cảnh, quản lý lịch sử bản dịch và thông tin tài khoản.'
+            : 'Sign in to translate with context-aware AI, manage translation history, and view your account.';
+        const eyebrow = document.querySelector('.login-eyebrow');
+        if (eyebrow) eyebrow.textContent = t.isVi ? 'ĐĂNG NHẬP TÀI KHOẢN' : 'ACCOUNT LOGIN';
+        const providerButtons = document.querySelectorAll('.provider-button');
+        const providerLabels = [t.isVi?'Tiếp tục với Google':'Continue with Google', t.isVi?'Apple · Đang phát triển':'Apple · In development', t.isVi?'Điện thoại · Đang phát triển':'Phone · In development'];
+        providerButtons.forEach((button,i) => {
+            const span = button.querySelector(':scope > span:not(.provider-arrow)');
+            if(span) span.textContent = providerLabels[i];
+            if (i>0) button.title=t.isVi?'Tính năng đang được phát triển':'This feature is under development';
+        });
+        const leftHero=document.querySelector('.login-visual h2');
+        if(leftHero) leftHero.innerHTML=t.isVi?'Dịch chính xác hơn khi <span>hiểu đúng ngữ cảnh.</span>':'Better translations start with <span>the right context.</span>';
+        const lead=document.querySelector('.login-visual .login-visual-description, .login-visual .visual-description, .login-visual > p');
+        if(lead) lead.textContent=t.isVi?'Transense AI phân tích từ khóa, từ đa nghĩa và nội dung xung quanh để lựa chọn nghĩa phù hợp, thay vì chỉ dịch từng từ riêng lẻ.':'Transense AI analyzes keywords, ambiguous terms, and surrounding context to choose the appropriate meaning, rather than translating word by word.';
+        document.querySelectorAll('.login-feature > span').forEach((el,i)=>{el.textContent=(t.isVi?['Dịch theo ngữ cảnh','Lịch sử bản dịch','Phân tích ngữ cảnh AI']:['Context-aware translation','Translation history','AI context analysis'])[i];});
+        const project=document.querySelector('.login-project');
+        if(project) project.textContent=t.isVi?'Đồ án 1 · Ngành Khoa học Máy tính · 2026':'Project 1 · Computer Science · 2026';
+        
+        if (h1) h1.textContent = t.loginTitle;
+        const registerLine = document.querySelector('.register-line');
+        if (registerLine) {
+            registerLine.childNodes[0].textContent = t.noAccount + ' ';
+            const a = registerLine.querySelector('a');
+            if (a) a.textContent = t.createAccount;
+        }
+        const demoNote = document.querySelector('.demo-note span');
+        if (demoNote) demoNote.textContent = t.demoNote;
+        const providerCaption = document.querySelector('.modal-provider-info span');
+        if (providerCaption) providerCaption.textContent = t.demoLoginCaption;
+        const backBtn = document.querySelector('.modal-secondary');
+        if (backBtn) backBtn.textContent = t.back;
+        const continueBtn = document.getElementById('modalContinueButton');
+        if (continueBtn) continueBtn.textContent = t.cont;
+        const primaryLabel = document.getElementById('primaryFieldLabel');
+        if (primaryLabel) primaryLabel.textContent = t.password;
+    }
+
+    /* =====================================================
+       OPEN MODAL
+    ====================================================== */
+
+    function openLoginModal(
+        provider
+    ) {
+
+        selectedProvider =
+            provider;
+
+
+        clearErrors();
+
+
+        const uiText =
+            getAuthUiText();
+
+
+        demoUserName.value =
+            "";
+
+
+        demoUserEmail.value =
+            "";
+
+
+        demoUserPhone.value =
+            "";
+
+
+        emailGroup.style.display =
+            "block";
+
+
+        phoneGroup.style.display =
+            "none";
+
+
+        primaryFieldLabel.textContent =
+            uiText.password;
+
+
+        primaryFieldIcon.className =
+            "fa-solid fa-lock";
+
+
+        demoUserName.type =
+            "password";
+
+
+        demoUserName.placeholder =
+            uiText.passwordPlaceholder;
+
+
+        demoUserName.autocomplete =
+            "current-password";
+
+
+        document.querySelector('label[for="demoUserEmail"]').textContent =
+            uiText.email;
+
+
+        if (
+            provider ===
+            "google"
+        ) {
+
+            modalProviderIcon.innerHTML =
+                `
+                    <i
+                        class="fa-brands fa-google"
+                        style="color:#4285F4;"
+                    ></i>
+                `;
+
+
+            modalProviderTitle.textContent =
+                "Google";
+
+
+            modalTitle.textContent =
+                uiText.providerGoogle;
+
+
+            modalDescription.textContent =
+                uiText.descGoogle;
+
+
+            demoUserEmail.placeholder =
+                "example@gmail.com";
+
+        }
+
+
+        if (
+            provider ===
+            "apple"
+        ) {
+
+            modalProviderIcon.innerHTML =
+                `
+                    <i class="fa-brands fa-apple"></i>
+                `;
+
+
+            modalProviderTitle.textContent =
+                "Apple";
+
+
+            modalTitle.textContent =
+                uiText.providerApple;
+
+
+            modalDescription.textContent =
+                uiText.descApple;
+
+
+            demoUserEmail.placeholder =
+                "example@icloud.com";
+
+        }
+
+
+        if (
+            provider ===
+            "phone"
+        ) {
+
+            modalProviderIcon.innerHTML =
+                `
+                    <i
+                        class="fa-solid fa-mobile-screen-button"
+                        style="color:#a78bfa;"
+                    ></i>
+                `;
+
+
+            modalProviderTitle.textContent =
+                uiText.phone;
+
+
+            modalTitle.textContent =
+                uiText.providerPhone;
+
+
+            modalDescription.textContent =
+                uiText.descPhone;
+
+
+            emailGroup.style.display =
+                "none";
+
+
+            phoneGroup.style.display =
+                "block";
+
+        }
+
+
+        loginModalOverlay
+            .classList
+            .add(
+                "show"
+            );
+
+
+        setTimeout(
+            function () {
+
+                demoUserEmail.focus();
+
+            },
+            100
+        );
+
+    }
+
+
+    /* =====================================================
+       CLOSE
+    ====================================================== */
+
+    function closeLoginModal() {
+
+        loginModalOverlay
+            .classList
+            .remove(
+                "show"
+            );
+
+
+        clearErrors();
+
+    }
+
+
+    loginModalOverlay.addEventListener(
+        "click",
+        function (
+            event
+        ) {
+
+            if (
+                event.target ===
+                loginModalOverlay
+            ) {
+
+                closeLoginModal();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       SUBMIT
+    ====================================================== */
+
+    function demoPasswordFingerprint(value) { let h = 2166136261; for (const c of value) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); }
+
+    demoLoginForm.addEventListener(
+        "submit",
+        function (
+            event
+        ) {
+
+            event.preventDefault();
+
+
+            clearErrors();
+
+
+            const password =
+                demoUserName
+                    .value
+                    .trim();
+
+
+            const email =
+                demoUserEmail
+                    .value
+                    .trim();
+
+
+            const phone =
+                demoUserPhone
+                    .value
+                    .trim();
+
+
+            let valid =
+                true;
+            if (
+                password.length < 8
+            ) {
+
+                nameError.textContent =
+                    getAuthUiText().passwordRequired;
+
+
+                valid =
+                    false;
+
+            }
+
+
+            if (
+                selectedProvider ===
+                "google"
+                ||
+                selectedProvider ===
+                "apple"
+            ) {
+
+                if (
+                    !isValidEmail(
+                        email
+                    )
+                ) {
+
+                    emailError.textContent =
+                        getAuthUiText().emailRequired;
+
+
+                    valid =
+                        false;
+
+                }
+
+
+                if (
+                    selectedProvider ===
+                    "google"
+                    &&
+                    isValidEmail(
+                        email
+                    )
+                    &&
+                    !email
+                        .toLowerCase()
+                        .endsWith(
+                            "@gmail.com"
+                        )
+                ) {
+
+                    emailError.textContent =
+                        getAuthUiText().gmailRequired;
+
+
+                    valid =
+                        false;
+
+                }
+
+            }
+
+
+            if (
+                selectedProvider ===
+                "phone"
+            ) {
+
+                const cleanPhone =
+                    phone.replace(
+                        /\s/g,
+                        ""
+                    );
+
+
+                if (
+                    !/^0\d{9}$/
+                        .test(
+                            cleanPhone
+                        )
+                ) {
+
+                    phoneError.textContent =
+                        "Nhập số điện thoại 10 chữ số bắt đầu bằng 0.";
+
+
+                    valid =
+                        false;
+
+                }
+
+            }
+
+
+            if (!valid) {
+
+                return;
+
+            }
+
+
+            let account = null;
+            try { account = JSON.parse(localStorage.getItem("transenseRegisteredDemoAccount") || "null"); } catch (_) {}
+            const normalizedEmail = email.trim().toLowerCase();
+            const registeredMatch = account && normalizedEmail === account.email &&
+                demoPasswordFingerprint(password) === account.passwordFingerprint;
+            const builtInMatch = normalizedEmail === "example@gmail.com" && password === "12345678";
+            if (!registeredMatch && !builtInMatch) {
+                emailError.textContent = getAuthUiText().wrongCredentials || "Email hoặc mật khẩu demo chưa chính xác.";
+                return;
+            }
+            loginDemoUser(
+                registeredMatch ? account.fullName : "Nguyễn Minh Huy",
+                registeredMatch ? account.email : "example@gmail.com",
+                ""
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       LOGIN DEMO
+    ====================================================== */
+
+    function loginDemoUser(
+        name,
+        email,
+        phone
+    ) {
+
+        modalContinueButton.disabled =
+            true;
+
+
+        modalContinueButton.innerHTML =
+            `
+                <i
+                    class="fa-solid fa-circle-notch fa-spin"
+                ></i>
+                Đang đăng nhập...
+            `;
+
+
+        setTimeout(
+            function () {
+
+                localStorage.setItem(
+                    "isLoggedIn",
+                    "true"
+                );
+
+
+                localStorage.setItem(
+                    "userName",
+                    name
+                );
+
+
+                localStorage.setItem(
+                    "loginProvider",
+                    selectedProvider
+                );
+
+
+                if (email) {
+
+                    localStorage.setItem(
+                        "userEmail",
+                        email
+                    );
+
+                }
+                else {
+
+                    localStorage.removeItem(
+                        "userEmail"
+                    );
+
+                }
+
+
+                if (phone) {
+
+                    localStorage.setItem(
+                        "userPhone",
+                        phone
+                    );
+
+                }
+                else {
+
+                    localStorage.removeItem(
+                        "userPhone"
+                    );
+
+                }
+
+
+                localStorage.setItem(
+                    "lastLogin",
+                    new Date()
+                        .toISOString()
+                );
+
+
+                closeLoginModal();
+
+
+                successMessage.textContent =
+                    "Xin chào "
+                    +
+                    name
+                    +
+                    ". Đang chuyển đến Transense AI...";
+
+
+                successOverlay
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    900
+                );
+
+            },
+            800
+        );
+
+    }
+
+
+    /* =====================================================
+       VALIDATION
+    ====================================================== */
+
+    function isValidEmail(
+        email
+    ) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(
+                email
+            );
+
+    }
+
+
+    function clearErrors() {
+
+        nameError.textContent =
+            "";
+
+
+        emailError.textContent =
+            "";
+
+
+        phoneError.textContent =
+            "";
+
+
+        modalContinueButton.disabled =
+            false;
+
+
+        modalContinueButton.textContent =
+            getAuthUiText().cont;
+
+    }
+
+    applyLoginPageTranslations();
+    window.addEventListener("transenseLanguageChanged", applyLoginPageTranslations);
+
+</script>
+
+
+<script src="js/i18n.js?v=menu-fix-20261023"></script>
+</body>
+
+</html>

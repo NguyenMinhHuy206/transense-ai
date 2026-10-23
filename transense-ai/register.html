@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Đăng Ký - Transense AI</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+<script>
+(function(){
+  const choice=localStorage.getItem('transenseTheme');
+  const system=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  document.documentElement.dataset.theme=(choice==='dark'||choice==='light')?choice:system;
+})();
+</script>
+
+    <style>
+
+        /* =========================================================
+           BASE
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            margin: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 28px 18px;
+
+            background:
+                #090d14;
+
+            color:
+                #ffffff;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           REGISTER WRAPPER
+        ========================================================= */
+
+        .register-shell {
+            width: min(1280px, 100%);
+            min-height: 790px;
+
+            display: grid;
+            grid-template-columns:
+                0.92fr
+                1.08fr;
+
+            overflow: hidden;
+
+            border:
+                1px solid #2a303b;
+
+            border-radius: 28px;
+
+            background:
+                #10141c;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0, 0, 0, 0.35);
+        }
+
+
+        /* =========================================================
+           LEFT SIDE
+        ========================================================= */
+
+        .register-info {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            padding:
+                42px 42px
+                34px;
+
+            overflow: hidden;
+
+            border-right:
+                1px solid #2a303b;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(37, 99, 235, 0.08),
+                    transparent 45%
+                ),
+                #171b23;
+        }
+
+        .register-info::before {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            left: -250px;
+            top: 130px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37, 99, 235, 0.08);
+
+            filter: blur(25px);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           BRAND
+        ========================================================= */
+
+        .register-brand {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            text-decoration: none;
+        }
+
+        .register-logo {
+            width: 50px;
+            height: 50px;
+
+            object-fit: contain;
+
+            border-radius: 13px;
+        }
+
+        .register-brand-name {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            color: #ffffff;
+
+            font-size: 21px;
+            font-weight: 750;
+        }
+
+        .register-demo {
+            padding:
+                4px 8px;
+
+            border:
+                1px solid
+                rgba(129, 140, 248, 0.35);
+
+            border-radius: 999px;
+
+            color: #a5b4fc;
+
+            font-size: 8px;
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+        }
+
+        .register-brand-sub {
+            margin-top: 4px;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           LEFT CONTENT
+        ========================================================= */
+
+        .register-chip {
+            position: relative;
+            z-index: 2;
+
+            width: fit-content;
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 32px;
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid
+                rgba(16, 185, 129, 0.18);
+
+            border-radius: 999px;
+
+            background:
+                rgba(16, 185, 129, 0.055);
+
+            color: #94a3b8;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .register-chip-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #10b981;
+
+            box-shadow:
+                0 0 10px
+                rgba(16, 185, 129, 0.55);
+        }
+
+        .register-info h2 {
+            position: relative;
+            z-index: 2;
+
+            max-width: 490px;
+
+            margin:
+                24px 0
+                14px;
+
+            color: #ffffff;
+
+            font-size: 39px;
+
+            line-height: 1.15;
+
+            letter-spacing: -1.1px;
+        }
+
+        .register-info h2 span {
+            color: #9ba8bb;
+        }
+
+        .register-description {
+            position: relative;
+            z-index: 2;
+
+            max-width: 490px;
+
+            margin: 0;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================================
+           BENEFITS
+        ========================================================= */
+
+        .register-benefits {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+
+            margin-top: 28px;
+        }
+
+        .benefit-row {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            padding:
+                12px 13px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.10);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 255, 255, 0.018);
+        }
+
+        .benefit-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border:
+                1px solid
+                rgba(59, 130, 246, 0.22);
+
+            border-radius: 10px;
+
+            background:
+                rgba(59, 130, 246, 0.08);
+
+            color: #60a5fa;
+
+            font-size: 13px;
+        }
+
+        .benefit-content strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: #ffffff;
+
+            font-size: 10px;
+        }
+
+        .benefit-content span {
+            display: block;
+
+            color: #7f8ca1;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           STEPS
+        ========================================================= */
+
+        .register-steps {
+            position: relative;
+            z-index: 2;
+
+            margin-top: 26px;
+
+            padding: 15px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.10);
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.015);
+        }
+
+        .steps-label {
+            margin-bottom: 13px;
+
+            color: #64748b;
+
+            font-size: 8px;
+            font-weight: 700;
+
+            letter-spacing: 1.1px;
+        }
+
+        .steps-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 9px;
+        }
+
+        .step-card {
+            position: relative;
+
+            min-height: 83px;
+
+            padding:
+                12px 10px;
+
+            border:
+                1px solid
+                rgba(148, 163, 184, 0.08);
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.015);
+        }
+
+        .step-number {
+            width: 23px;
+            height: 23px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 8px;
+
+            border-radius: 7px;
+
+            background:
+                rgba(37, 99, 235, 0.10);
+
+            color: #60a5fa;
+
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .step-card strong {
+            display: block;
+
+            color: #ffffff;
+
+            font-size: 8px;
+        }
+
+        .step-card span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #64748b;
+
+            font-size: 7px;
+
+            line-height: 1.4;
+        }
+
+        .register-project {
+            position: relative;
+            z-index: 2;
+
+            margin-top: auto;
+
+            padding-top: 25px;
+
+            color: #64748b;
+
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           RIGHT SIDE
+        ========================================================= */
+
+        .register-panel {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding:
+                46px 60px
+                38px;
+
+            background: #0f131b;
+        }
+
+        .close-register {
+            position: absolute;
+
+            top: 25px;
+            right: 27px;
+
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+            border-radius: 9px;
+
+            background: transparent;
+
+            color: #94a3b8;
+
+            font-size: 21px;
+
+            cursor: pointer;
+        }
+
+        .close-register:hover {
+            background: #181d27;
+
+            color: #ffffff;
+        }
+
+        .register-eyebrow {
+            margin-bottom: 15px;
+
+            color: #94a3b8;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+        }
+
+        .register-panel h1 {
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: 42px;
+
+            line-height: 1.08;
+
+            letter-spacing: -1.1px;
+        }
+
+        .register-panel-description {
+            max-width: 500px;
+
+            margin:
+                14px 0
+                27px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-group {
+            margin-bottom: 13px;
+        }
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+            font-weight: 650;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            top: 50%;
+            left: 15px;
+
+            transform:
+                translateY(-50%);
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 51px;
+
+            padding:
+                0 43px;
+
+            border:
+                1px solid #2d3440;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #171b23;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.18s ease,
+                box-shadow 0.18s ease;
+        }
+
+        .form-input::placeholder {
+            color: #64748b;
+        }
+
+        .form-input:focus {
+            border-color: #3b82f6;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(59, 130, 246, 0.10);
+        }
+
+        .form-input.invalid {
+            border-color: #ef4444;
+        }
+
+        .form-input.valid {
+            border-color:
+                rgba(16, 185, 129, 0.70);
+        }
+
+        .show-password {
+            position: absolute;
+
+            top: 50%;
+            right: 13px;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #64748b;
+
+            font-size: 9px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .show-password:hover {
+            color: #ffffff;
+        }
+
+        .form-error {
+            min-height: 14px;
+
+            margin-top: 5px;
+
+            color: #f87171;
+
+            font-size: 8px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================================
+           PASSWORD STRENGTH
+        ========================================================= */
+
+        .password-strength {
+            margin:
+                -1px 0
+                16px;
+        }
+
+        .strength-bars {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 5px;
+        }
+
+        .strength-bar {
+            height: 3px;
+
+            border-radius: 999px;
+
+            background: #2d3440;
+        }
+
+        .password-strength.weak
+        .strength-bar:nth-child(1) {
+            background: #ef4444;
+        }
+
+        .password-strength.medium
+        .strength-bar:nth-child(-n+2) {
+            background: #f59e0b;
+        }
+
+        .password-strength.good
+        .strength-bar:nth-child(-n+3) {
+            background: #3b82f6;
+        }
+
+        .password-strength.strong
+        .strength-bar {
+            background: #10b981;
+        }
+
+        .strength-text-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 6px;
+
+            color: #64748b;
+
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           TERMS
+        ========================================================= */
+
+        .terms-row {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 9px;
+
+            margin:
+                2px 0
+                17px;
+        }
+
+        .terms-row input {
+            width: 14px;
+            height: 14px;
+
+            margin-top: 2px;
+
+            accent-color: #2563eb;
+
+            cursor: pointer;
+        }
+
+        .terms-row label {
+            color: #94a3b8;
+
+            font-size: 9px;
+
+            line-height: 1.55;
+
+            cursor: pointer;
+        }
+
+        .terms-row strong {
+            color: #60a5fa;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           REGISTER BUTTON
+        ========================================================= */
+
+        .register-submit {
+            width: 100%;
+            min-height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            border:
+                1px solid #2563eb;
+
+            border-radius: 12px;
+
+            background: #2563eb;
+
+            color: #ffffff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(37, 99, 235, 0.18);
+
+            transition:
+                transform 0.18s ease,
+                background 0.18s ease;
+        }
+
+        .register-submit:hover {
+            transform:
+                translateY(-1px);
+
+            background: #1d4ed8;
+        }
+
+        .register-submit:disabled {
+            opacity: 0.65;
+
+            cursor: wait;
+
+            transform: none;
+        }
+
+
+        /* =========================================================
+           LOGIN
+        ========================================================= */
+
+        .login-link {
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+        }
+
+        .login-link a {
+            margin-left: 5px;
+
+            color: #ffffff;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            color: #60a5fa;
+        }
+
+
+        /* =========================================================
+           DEMO NOTE
+        ========================================================= */
+
+        .register-note {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 9px;
+
+            margin-top: 24px;
+
+            padding:
+                18px 0
+                0;
+
+            border-top:
+                1px solid #242a34;
+
+            color: #64748b;
+
+            font-size: 8px;
+
+            line-height: 1.6;
+        }
+
+        .register-note i {
+            margin-top: 2px;
+        }
+
+
+        /* =========================================================
+           SUCCESS
+        ========================================================= */
+
+        .success-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0, 0, 0, 0.72);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+        .success-overlay.show {
+            display: flex;
+        }
+
+        .success-card {
+            width:
+                min(
+                    390px,
+                    100%
+                );
+
+            padding:
+                32px 27px;
+
+            border:
+                1px solid #303643;
+
+            border-radius: 21px;
+
+            background: #11151d;
+
+            text-align: center;
+
+            box-shadow:
+                0 30px 90px
+                rgba(0, 0, 0, 0.55);
+        }
+
+        .success-icon {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin:
+                0 auto
+                17px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(16, 185, 129, 0.12);
+
+            color: #10b981;
+
+            font-size: 23px;
+        }
+
+        .success-card h3 {
+            margin:
+                0 0
+                9px;
+
+            color: #ffffff;
+
+            font-size: 20px;
+        }
+
+        .success-card p {
+            margin: 0;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media
+        (max-width: 980px) {
+
+            body {
+                align-items: flex-start;
+            }
+
+            .register-shell {
+                max-width: 690px;
+
+                grid-template-columns: 1fr;
+            }
+
+            .register-info {
+                border-right: none;
+
+                border-bottom:
+                    1px solid #2a303b;
+            }
+
+            .register-project {
+                margin-top: 25px;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media
+        (max-width: 620px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .register-shell {
+                border-radius: 20px;
+            }
+
+            .register-info {
+                padding:
+                    27px 20px;
+            }
+
+            .register-brand-name {
+                font-size: 18px;
+            }
+
+            .register-info h2 {
+                font-size: 29px;
+            }
+
+            .register-description {
+                font-size: 11px;
+            }
+
+            .steps-list {
+                grid-template-columns: 1fr;
+            }
+
+            .step-card {
+                min-height: auto;
+            }
+
+            .register-panel {
+                padding:
+                    42px 20px
+                    28px;
+            }
+
+            .register-panel h1 {
+                font-size: 34px;
+            }
+
+            .close-register {
+                top: 14px;
+                right: 14px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+            .form-input {
+                height: 50px;
+            }
+
+        }
+
+
+/* AUTH ADAPTIVE THEME & FINISH */
+html[data-theme="light"] { color-scheme:light; }
+html[data-theme="dark"] { color-scheme:dark; }
+html[data-theme="light"] body {background:radial-gradient(circle at 25% 5%,rgba(66,133,220,.1),transparent 45%),#e5e9ef;color:#172235;}
+html[data-theme="light"] .login-shell,
+html[data-theme="light"] .register-shell {background:#fff;border-color:#ced6e1;box-shadow:0 24px 60px rgba(34,48,70,.12);}
+html[data-theme="light"] .login-info,
+html[data-theme="light"] .register-info {background:linear-gradient(145deg,#eaf2fc 0%,#f4f7fb 58%,#ecf1f7 100%);border-right-color:#d5deea;}
+html[data-theme="light"] .login-panel,
+html[data-theme="light"] .register-panel {background:#fff;color:#172235;}
+html[data-theme="light"] .login-brand-name,
+html[data-theme="light"] .register-brand-name,
+html[data-theme="light"] .login-info h2,
+html[data-theme="light"] .register-info h2,
+html[data-theme="light"] .login-panel h1,
+html[data-theme="light"] .register-panel h1,
+html[data-theme="light"] .login-feature,
+html[data-theme="light"] .benefit-content strong,
+html[data-theme="light"] .step-card strong,
+html[data-theme="light"] .form-group label {color:#1c2a3f;}
+html[data-theme="light"] .login-info h2 span,
+html[data-theme="light"] .register-info h2 span {color:#36619a;}
+html[data-theme="light"] .login-info-desc,
+html[data-theme="light"] .register-description,
+html[data-theme="light"] .login-description,
+html[data-theme="light"] .register-panel-description,
+html[data-theme="light"] .login-brand-sub,
+html[data-theme="light"] .register-brand-sub,
+html[data-theme="light"] .register-project,
+html[data-theme="light"] .login-project,
+html[data-theme="light"] .step-card span,
+html[data-theme="light"] .benefit-content span {color:#58697f;}
+html[data-theme="light"] .benefit-row,
+html[data-theme="light"] .step-card,
+html[data-theme="light"] .login-feature {background:rgba(255,255,255,.7);border-color:#d8e1eb;}
+html[data-theme="light"] .login-visual,
+html[data-theme="light"] .visual-inner {background:#f5f8fd;border-color:#cddbea;}
+html[data-theme="light"] .visual-card,
+html[data-theme="light"] .visual-analysis {background:#fff;border-color:#d9e2ed;}
+html[data-theme="light"] .visual-source,
+html[data-theme="light"] .visual-result,
+html[data-theme="light"] .visual-context-result strong {color:#21324d;}
+html[data-theme="light"] .register-panel .form-input,
+html[data-theme="light"] .login-modal .login-input,
+html[data-theme="light"] .provider-button {background:#f7f9fc;border-color:#cfd9e6;color:#1c2a3f;}
+html[data-theme="light"] .register-panel .form-input::placeholder,
+html[data-theme="light"] .login-modal .login-input::placeholder {color:#75839a;}
+html[data-theme="light"] .register-panel .input-icon,
+html[data-theme="light"] .register-panel .show-password,
+html[data-theme="light"] .close-register,
+html[data-theme="light"] .close-login {color:#52657c;}
+html[data-theme="light"] .login-modal,
+html[data-theme="light"] .success-card,
+html[data-theme="light"] .success-box {background:#fff;color:#1c2a3f;border-color:#d6e0eb;}
+html[data-theme="light"] .modal-top,
+html[data-theme="light"] .modal-provider,
+html[data-theme="light"] .modal-content,
+html[data-theme="light"] .modal-content h2 {color:#1c2a3f;}
+/* Tidy up panels without using decorative stock photos */
+.login-shell,.register-shell {transition:background-color .25s,border-color .25s;}
+.login-info,.register-info {isolation:isolate;}
+.auth-demo-preview {position:relative;z-index:1;margin:24px 0 10px;padding:18px;border:1px solid var(--border,#394356);border-radius:18px;background:var(--surface,#1b2536);box-shadow:0 10px 28px rgba(0,0,0,.08);}
+.auth-preview-top {display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;font-weight:750;color:var(--muted,#a2b2c5);margin-bottom:15px;}
+.auth-preview-top i {color:#2bbd96;}
+.auth-preview-pair {display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:9px;align-items:stretch;}
+.auth-preview-box {min-width:0;padding:12px;border:1px solid var(--border,#394356);border-radius:11px;background:var(--surface-2,#222c3e);color:var(--text,#eef3fa);font-size:12px;line-height:1.6;}
+.auth-preview-box small {display:block;letter-spacing:1px;color:var(--muted,#9fadc0);font-size:9px;margin-bottom:7px;}
+.auth-preview-arrow {display:grid;place-items:center;color:#4d94f8;}
+.auth-preview-foot {display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;font-size:10px;color:var(--muted,#9fadc0);}
+.auth-preview-foot span {padding:5px 9px;border-radius:999px;background:rgba(40,156,134,.1);border:1px solid rgba(40,156,134,.16);}
+html[data-theme="light"] .auth-demo-preview {background:#fff;border-color:#d0dbe8;}
+html[data-theme="light"] .auth-preview-box {background:#f7faff;border-color:#d6e1ed;color:#223149;}
+html[data-theme="light"] .auth-preview-top,html[data-theme="light"] .auth-preview-foot {color:#596e84;}
+@media (max-width:720px){.auth-preview-pair{grid-template-columns:1fr}.auth-preview-arrow{transform:rotate(90deg)}}
+
+
+/* Auth footer: readable and centered in both themes */
+.register-panel .login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+    text-align: center;
+    margin: 22px auto 0;
+    color: var(--muted, #64748b);
+    font-size: 12px;
+}
+.register-panel .login-link a {
+    color: #60a5fa;
+    margin: 0;
+    font-weight: 750;
+    text-decoration: none;
+}
+html[data-theme="light"] .register-panel .login-link {
+    color: #53647b;
+}
+html[data-theme="light"] .register-panel .login-link a {
+    color: #1d4ed8;
+}
+.register-panel .login-link a:hover {
+    text-decoration: underline;
+}
+
+    
+/* Responsive fixes */
+
+@media(max-width:760px){
+ .register-layout,.register-container,.register-panel,.register-hero{max-width:100%;min-width:0;}
+ .register-main,.register-grid,.register-shell{grid-template-columns:minmax(0,1fr)!important;}
+ .register-panel{padding:24px 16px!important;}
+ .form-row{grid-template-columns:minmax(0,1fr)!important;}
+ .auth-preview-pair{grid-template-columns:minmax(0,1fr)!important;}
+ .register-benefits,.register-steps{max-width:100%;min-width:0;}
+ .success-card{max-width:calc(100vw - 24px);}
+}
+
+
+/* Unified authentication palette */
+html[data-theme="dark"] .register-shell {border-color:rgba(96,165,250,.26)!important;box-shadow:0 22px 66px rgba(0,0,0,.3)!important;}
+html[data-theme="dark"] .register-left,html[data-theme="dark"] .register-right {background:linear-gradient(155deg,#182235,#202734)!important;color:#f4f7ff!important;}
+html[data-theme="dark"] .register-input {background:#222b3a!important;color:#f4f7ff!important;border-color:rgba(134,162,212,.25)!important;}
+
+
+/* ===== Compact auth page refinement ===== */
+body,
+button,
+input {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.auth-panel-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-right: 48px;
+}
+
+.auth-panel-brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.auth-panel-logo {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.24);
+    color: #8ab4ff;
+    flex-shrink: 0;
+}
+
+.auth-panel-logo i {
+    font-size: 14px;
+}
+
+.auth-panel-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.auth-panel-brand-text strong {
+    color: var(--text, #ffffff);
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 750;
+}
+
+.auth-panel-brand-text small {
+    color: var(--muted, #8da0b8);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.register-shell {
+    width: min(760px, calc(100vw - 36px)) !important;
+    min-height: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    border-radius: 26px !important;
+}
+
+.register-info {
+    display: none !important;
+}
+
+.register-panel {
+    padding: 34px 38px 30px !important;
+    background: linear-gradient(160deg, var(--surface, #111722), var(--surface-2, #1b2230)) !important;
+}
+
+.close-register {
+    top: 18px;
+    right: 18px;
+}
+
+.register-eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+}
+
+.register-panel h1 {
+    font-size: 30px !important;
+    line-height: 1.12;
+    letter-spacing: -0.8px;
+}
+
+.register-panel-description {
+    max-width: none;
+    margin: 14px 0 22px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.form-group label,
+.password-label,
+.confirm-password-label {
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.login-link,
+.register-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 22px auto 0;
+    color: var(--muted, #8ea0b8);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.login-link a,
+.register-line a {
+    margin: 0;
+    color: #3b82f6;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover,
+.register-line a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+}
+
+.register-note {
+    margin-top: 26px;
+    padding-top: 18px;
+    font-size: 11px;
+}
+
+html[data-theme="light"] .register-shell {
+    background: #ffffff !important;
+    border-color: #d7dfeb !important;
+    box-shadow: 0 28px 70px rgba(35, 52, 84, 0.14) !important;
+}
+
+html[data-theme="light"] .register-panel {
+    background: linear-gradient(160deg, #ffffff, #f8fbff) !important;
+}
+
+html[data-theme="light"] .auth-panel-logo {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: #c9d9ee;
+    color: #2563eb;
+}
+
+html[data-theme="light"] .auth-panel-brand-text strong {
+    color: #1e2b43;
+}
+
+html[data-theme="light"] .auth-panel-brand-text small,
+html[data-theme="light"] .login-link,
+html[data-theme="light"] .register-line {
+    color: #60728a;
+}
+
+html[data-theme="light"] .login-link a,
+html[data-theme="light"] .register-line a {
+    color: #1d4ed8;
+}
+
+@media (max-width: 640px) {
+    .register-shell {
+        width: min(100%, calc(100vw - 20px)) !important;
+        border-radius: 22px !important;
+    }
+
+    .register-panel {
+        padding: 28px 18px 24px !important;
+    }
+
+    .auth-panel-brand {
+        margin-bottom: 16px;
+        padding-right: 40px;
+    }
+
+    .auth-panel-brand-text strong {
+        font-size: 17px;
+    }
+
+    .register-panel h1 {
+        font-size: 28px !important;
+    }
+
+    .register-panel-description,
+    .login-link,
+    .login-link a,
+    .register-line,
+    .register-line a {
+        font-size: 13px;
+    }
+}
+
+
+/* ===== 2026-10-22 AUTH BRAND + TYPOGRAPHY OVERRIDES ===== */
+.auth-panel-brand-link { gap: 10px !important; align-items: center !important; }
+.auth-panel-logo { width: 32px !important; height: 32px !important; min-width: 32px !important; padding: 0 !important; background: transparent !important; border: 0 !important; box-shadow: none !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+.auth-panel-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
+.auth-panel-brand-text strong { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 18px !important; font-weight: 800 !important; letter-spacing: -0.02em !important; }
+.auth-panel-brand-text small { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 12px !important; }
+.login-brand, .register-brand { display: inline-flex !important; align-items: center !important; gap: 10px !important; }
+.login-logo, .register-logo { width: 36px !important; height: 36px !important; flex: 0 0 36px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+.login-logo img, .register-logo img { width: 100% !important; height: 100% !important; object-fit: contain !important; display: block !important; }
+.login-panel h1, .register-panel h1 { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 58px !important; font-weight: 800 !important; line-height: 1.04 !important; letter-spacing: -0.04em !important; color: #172235 !important; text-shadow: none !important; -webkit-text-stroke: 0 !important; margin: 0 0 14px !important; }
+html[data-theme="dark"] .login-panel h1, html[data-theme="dark"] .register-panel h1 { color: #f8fbff !important; }
+.register-line, .login-link, .register-line a, .login-link a { font-family: Inter, "Segoe UI", Arial, sans-serif !important; font-size: 14px !important; letter-spacing: 0 !important; }
+html[data-theme="light"] .register-line, html[data-theme="light"] .login-link { color: #4f607a !important; }
+html[data-theme="light"] .register-line a, html[data-theme="light"] .login-link a { color: #2563eb !important; font-weight: 700 !important; }
+
+
+/* Correct oversize title and match the compact Google-login title typography */
+.login-panel h1,.register-panel h1{font-family:Arial,"Segoe UI",sans-serif!important;font-size:30px!important;font-weight:700!important;line-height:1.2!important;letter-spacing:-.02em!important;margin:0 0 12px!important;text-shadow:none!important;-webkit-text-stroke:0!important}
+.auth-panel-brand-text .brand-ai,.login-brand-name .brand-ai,.register-brand-name .brand-ai{color:#249bfa!important}
+html[data-theme="light"] .auth-panel-brand-text .brand-ai{color:#1680e5!important}
+.auth-panel-logo{width:38px!important;height:38px!important;min-width:38px!important}
+.auth-panel-logo img{width:38px!important;height:38px!important;object-fit:contain!important}
+@media(max-width:600px){.login-panel h1,.register-panel h1{font-size:27px!important}}
+</style>
+<link rel="stylesheet" href="css/identity-auth.css?v=20261023" />
+<link rel="stylesheet" href="css/final-static-polish.css?v=20261023-final"/>
+</head>
+
+
+<body>
+
+
+<main class="register-shell">
+
+
+    <!-- =====================================================
+         LEFT SIDE
+    ====================================================== -->
+
+    <section class="register-info">
+
+
+        <a
+            href="index.html"
+            class="register-brand"
+        >
+
+            
+
+
+            <span class="register-logo"><img src="images/transense-logo-mark.png" alt="Transense AI logo"></span>
+<div>
+
+                <div class="register-brand-name">
+
+                    Transense <span class="brand-ai">AI</span>
+
+                    
+
+                </div>
+
+
+                <div class="register-brand-sub">
+                    Context-aware Translation
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <div class="register-chip">
+
+            <span class="register-chip-dot"></span>
+
+            Tạo tài khoản Transense AI
+
+        </div>
+
+
+        <h2>
+
+            Bắt đầu với một trải nghiệm
+
+            <span>
+                dịch thông minh hơn.
+            </span>
+
+        </h2>
+
+
+        <p class="register-description">
+
+            Tạo tài khoản để lưu lịch sử dịch,
+            quản lý nội dung đã dịch và sử dụng
+            các chức năng hỗ trợ ngữ cảnh,
+            phiên âm và phát âm trên Transense AI.
+
+        </p>
+
+
+        <!-- BENEFITS -->
+
+        <div class="register-benefits">
+
+
+            <div class="benefit-row">
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-language"></i>
+
+                </div>
+
+
+                <div class="benefit-content">
+
+                    <strong>
+                        Dịch theo ngữ cảnh
+                    </strong>
+
+                    <span>
+                        Hỗ trợ xác định nghĩa phù hợp
+                        của từ đa nghĩa và thành ngữ.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefit-row">
+
+                <div class="benefit-icon">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                </div>
+
+
+                <div class="benefit-content">
+
+                    <strong>
+                        Lưu lịch sử bản dịch
+                    </strong>
+
+                    <span>
+                        Dễ dàng xem lại nội dung
+                        đã dịch trong quá trình sử dụng.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="benefit-row">
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-volume-high"></i>
+
+                </div>
+
+
+                <div class="benefit-content">
+
+                    <strong>
+                        Phiên âm & phát âm
+                    </strong>
+
+                    <span>
+                        Hỗ trợ người dùng nghe
+                        và luyện cách đọc nội dung.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+<div class="auth-demo-preview" aria-label="Minh họa cách dịch theo ngữ cảnh">
+  <div class="auth-preview-top"><span><i class="fa-solid fa-wand-magic-sparkles"></i> Xem trước Transense AI</span><span>Ngữ cảnh tài chính</span></div>
+  <div class="auth-preview-pair">
+    <div class="auth-preview-box"><small>ENGLISH</small>I went to the <b>bank</b> to withdraw money.</div>
+    <span class="auth-preview-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+    <div class="auth-preview-box"><small>TIẾNG VIỆT</small>Tôi đến <b>ngân hàng</b> để rút tiền.</div>
+  </div>
+  <div class="auth-preview-foot"><span>bank</span><span>withdraw</span><span>Dịch dựa trên ngữ cảnh</span></div>
+</div>
+
+        <!-- STEPS -->
+
+        <div class="register-steps">
+
+            <div class="steps-label">
+                BẮT ĐẦU CHỈ VỚI 3 BƯỚC
+            </div>
+
+
+            <div class="steps-list">
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <strong>
+                        Tạo tài khoản
+                    </strong>
+
+                    <span>
+                        Nhập thông tin cơ bản.
+                    </span>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <strong>
+                        Đăng nhập
+                    </strong>
+
+                    <span>
+                        Truy cập hệ thống dịch.
+                    </span>
+
+                </div>
+
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <strong>
+                        Bắt đầu dịch
+                    </strong>
+
+                    <span>
+                        Sử dụng các chức năng dịch.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="register-project">
+
+            Prototype Đồ án 1 · Ngành Khoa học Máy tính · 2026
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         RIGHT SIDE
+    ====================================================== -->
+
+    <section class="register-panel">
+
+        <div class="auth-panel-brand">
+            <a href="index.html" class="auth-panel-brand-link">
+                <span class="auth-panel-logo"><img src="images/transense-logo-mark.png" alt="Transense AI logo"></span>
+                <span class="auth-panel-brand-text">
+                    <strong>Transense <span class="brand-ai">AI</span></strong>
+                    <small>Dịch Văn Bản Theo Ngữ Cảnh</small>
+                </span>
+            </a>
+        </div>
+
+
+        <button
+            type="button"
+            class="close-register"
+            title="Đóng"
+            onclick="window.location.href='index.html'"
+        >
+            ×
+        </button>
+
+
+        <div class="register-eyebrow">
+            TẠO TÀI KHOẢN
+        </div>
+
+
+        <h1>
+            Đăng Ký
+        </h1>
+
+
+        <p class="register-panel-description">
+
+            Điền thông tin bên dưới để tạo tài khoản
+            sử dụng trong phiên bản demo Transense AI.
+
+        </p>
+
+
+        <form
+            id="registerForm"
+            novalidate
+        >
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="fullName">
+                    Họ và tên
+                </label>
+
+
+                <div class="input-wrap">
+
+                    <i
+                        class="fa-regular fa-user input-icon"
+                    ></i>
+
+
+                    <input
+                        id="fullName"
+                        class="form-input"
+                        type="text"
+                        placeholder="Ví dụ: Nguyễn Minh Huy"
+                        autocomplete="name"
+                    >
+
+                </div>
+
+
+                <div
+                    class="form-error"
+                    id="nameError"
+                ></div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+
+                <div class="input-wrap">
+
+                    <i
+                        class="fa-regular fa-envelope input-icon"
+                    ></i>
+
+
+                    <input
+                        id="email"
+                        class="form-input"
+                        type="email"
+                        placeholder="example@gmail.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div
+                    class="form-error"
+                    id="emailError"
+                ></div>
+
+            </div>
+
+
+            <!-- PASSWORD ROW -->
+
+            <div class="form-row">
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Mật khẩu
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <i
+                            class="fa-solid fa-lock input-icon"
+                        ></i>
+
+
+                        <input
+                            id="password"
+                            class="form-input"
+                            type="password"
+                            placeholder="Ít nhất 8 ký tự"
+                            autocomplete="new-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="
+                                togglePassword(
+                                    'password',
+                                    this
+                                )
+                            "
+                        >
+                            Hiện
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="form-error"
+                        id="passwordError"
+                    ></div>
+
+                </div>
+
+
+                <!-- CONFIRM -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Xác nhận mật khẩu
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <i
+                            class="fa-solid fa-shield-halved input-icon"
+                        ></i>
+
+
+                        <input
+                            id="confirmPassword"
+                            class="form-input"
+                            type="password"
+                            placeholder="Nhập lại mật khẩu"
+                            autocomplete="new-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="
+                                togglePassword(
+                                    'confirmPassword',
+                                    this
+                                )
+                            "
+                        >
+                            Hiện
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="form-error"
+                        id="confirmPasswordError"
+                    ></div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- PASSWORD STRENGTH -->
+
+            <div
+                class="password-strength"
+                id="passwordStrength"
+            >
+
+                <div class="strength-bars">
+
+                    <span class="strength-bar"></span>
+                    <span class="strength-bar"></span>
+                    <span class="strength-bar"></span>
+                    <span class="strength-bar"></span>
+
+                </div>
+
+
+                <div class="strength-text-row">
+
+                    <span id="strengthText">
+                        Chưa nhập mật khẩu
+                    </span>
+
+                    <span>
+                        Tối thiểu 8 ký tự
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="terms-row">
+
+                <input
+                    id="agreeTerms"
+                    type="checkbox"
+                >
+
+
+                <label for="agreeTerms">
+
+                    Tôi đồng ý với
+
+                    <strong>
+                        điều khoản sử dụng
+                    </strong>
+
+                    và hiểu rằng đây là
+                    phiên bản prototype của Transense AI.
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="form-error"
+                id="termsError"
+            ></div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="register-submit"
+                id="registerButton"
+            >
+
+                <i class="fa-regular fa-user"></i>
+
+                Tạo tài khoản
+
+            </button>
+
+
+        </form>
+
+
+        <!-- LOGIN LINK -->
+
+        <div class="login-link">
+
+            Đã có tài khoản?
+
+            <a href="login.html">
+                Đăng nhập
+            </a>
+
+        </div>
+
+
+        <!-- NOTE -->
+
+        <div class="register-note">
+
+            <i class="fa-regular fa-circle-info"></i>
+
+
+            <span>
+
+                Phiên bản hiện tại mô phỏng chức năng tài khoản
+                bằng JavaScript và localStorage.
+                Mật khẩu không được lưu trong trình duyệt.
+
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================================
+     SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="success-overlay"
+    id="successOverlay"
+>
+
+
+    <div class="success-card">
+
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <h3>
+            Tạo tài khoản thành công
+        </h3>
+
+
+        <p id="successMessage">
+
+            Đang chuẩn bị tài khoản Transense AI...
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const registerForm =
+        document.getElementById(
+            "registerForm"
+        );
+
+
+    const fullName =
+        document.getElementById(
+            "fullName"
+        );
+
+
+    const email =
+        document.getElementById(
+            "email"
+        );
+
+
+    const password =
+        document.getElementById(
+            "password"
+        );
+
+
+    const confirmPassword =
+        document.getElementById(
+            "confirmPassword"
+        );
+
+
+    const agreeTerms =
+        document.getElementById(
+            "agreeTerms"
+        );
+
+
+    const nameError =
+        document.getElementById(
+            "nameError"
+        );
+
+
+    const emailError =
+        document.getElementById(
+            "emailError"
+        );
+
+
+    const passwordError =
+        document.getElementById(
+            "passwordError"
+        );
+
+
+    const confirmPasswordError =
+        document.getElementById(
+            "confirmPasswordError"
+        );
+
+
+    const termsError =
+        document.getElementById(
+            "termsError"
+        );
+
+
+    const registerButton =
+        document.getElementById(
+            "registerButton"
+        );
+
+
+    const passwordStrength =
+        document.getElementById(
+            "passwordStrength"
+        );
+
+
+    const strengthText =
+        document.getElementById(
+            "strengthText"
+        );
+
+
+    const successOverlay =
+        document.getElementById(
+            "successOverlay"
+        );
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    /* =========================================================
+       SHOW / HIDE PASSWORD
+    ========================================================= */
+
+    function togglePassword(
+        inputId,
+        button
+    ) {
+
+        const input =
+            document.getElementById(
+                inputId
+            );
+
+
+        if (
+            input.type ===
+            "password"
+        ) {
+
+            input.type =
+                "text";
+
+
+            button.textContent =
+                "Ẩn";
+
+        }
+        else {
+
+            input.type =
+                "password";
+
+
+            button.textContent =
+                "Hiện";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       PASSWORD STRENGTH
+    ========================================================= */
+
+    password.addEventListener(
+        "input",
+        function () {
+
+            updatePasswordStrength(
+                password.value
+            );
+
+        }
+    );
+
+
+    function updatePasswordStrength(
+        value
+    ) {
+
+        passwordStrength.className =
+            "password-strength";
+
+
+        if (!value) {
+
+            strengthText.textContent =
+                "Chưa nhập mật khẩu";
+
+            return;
+
+        }
+
+
+        let score =
+            0;
+
+
+        if (
+            value.length >=
+            8
+        ) {
+
+            score++;
+
+        }
+
+
+        if (
+            /[a-z]/.test(value)
+            &&
+            /[A-Z]/.test(value)
+        ) {
+
+            score++;
+
+        }
+
+
+        if (
+            /\d/.test(value)
+        ) {
+
+            score++;
+
+        }
+
+
+        if (
+            /[^A-Za-z0-9]/
+                .test(value)
+        ) {
+
+            score++;
+
+        }
+
+
+        if (
+            score <=
+            1
+        ) {
+
+            passwordStrength
+                .classList
+                .add(
+                    "weak"
+                );
+
+
+            strengthText.textContent =
+                "Yếu";
+
+        }
+        else if (
+            score ===
+            2
+        ) {
+
+            passwordStrength
+                .classList
+                .add(
+                    "medium"
+                );
+
+
+            strengthText.textContent =
+                "Trung bình";
+
+        }
+        else if (
+            score ===
+            3
+        ) {
+
+            passwordStrength
+                .classList
+                .add(
+                    "good"
+                );
+
+
+            strengthText.textContent =
+                "Tốt";
+
+        }
+        else {
+
+            passwordStrength
+                .classList
+                .add(
+                    "strong"
+                );
+
+
+            strengthText.textContent =
+                "Mạnh";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       CONFIRM PASSWORD LIVE
+    ========================================================= */
+
+    confirmPassword.addEventListener(
+        "input",
+        function () {
+
+            if (
+                !confirmPassword.value
+            ) {
+
+                confirmPassword
+                    .classList
+                    .remove(
+                        "valid",
+                        "invalid"
+                    );
+
+
+                confirmPasswordError.textContent =
+                    "";
+
+                return;
+
+            }
+
+
+            if (
+                password.value ===
+                confirmPassword.value
+            ) {
+
+                confirmPassword
+                    .classList
+                    .remove(
+                        "invalid"
+                    );
+
+
+                confirmPassword
+                    .classList
+                    .add(
+                        "valid"
+                    );
+
+
+                confirmPasswordError.textContent =
+                    "";
+
+            }
+            else {
+
+                confirmPassword
+                    .classList
+                    .remove(
+                        "valid"
+                    );
+
+
+                confirmPassword
+                    .classList
+                    .add(
+                        "invalid"
+                    );
+
+
+                confirmPasswordError.textContent =
+                    "Mật khẩu chưa khớp.";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       SUBMIT
+    ========================================================= */
+
+    registerForm.addEventListener(
+        "submit",
+        function (
+            event
+        ) {
+
+            event.preventDefault();
+
+
+            clearErrors();
+
+
+            const nameValue =
+                fullName
+                    .value
+                    .trim();
+
+
+            const emailValue =
+                email
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const passwordValue =
+                password.value;
+
+
+            const confirmValue =
+                confirmPassword.value;
+
+
+            let valid =
+                true;
+
+
+            /* NAME */
+
+            if (
+                nameValue.length <
+                2
+            ) {
+
+                setInvalid(
+                    fullName,
+                    nameError,
+                    "Vui lòng nhập họ và tên."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else {
+
+                setValid(
+                    fullName
+                );
+
+            }
+
+
+            /* EMAIL */
+
+            if (
+                !isValidEmail(
+                    emailValue
+                )
+            ) {
+
+                setInvalid(
+                    email,
+                    emailError,
+                    "Vui lòng nhập địa chỉ email hợp lệ."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else {
+
+                setValid(
+                    email
+                );
+
+            }
+
+
+            /* PASSWORD */
+
+            if (
+                passwordValue.length <
+                8
+            ) {
+
+                setInvalid(
+                    password,
+                    passwordError,
+                    "Mật khẩu phải có ít nhất 8 ký tự."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else if (
+                !/[A-Z]/.test(
+                    passwordValue
+                )
+                ||
+                !/[a-z]/.test(
+                    passwordValue
+                )
+                ||
+                !/\d/.test(
+                    passwordValue
+                )
+            ) {
+
+                setInvalid(
+                    password,
+                    passwordError,
+                    "Mật khẩu cần có chữ hoa, chữ thường và số."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else {
+
+                setValid(
+                    password
+                );
+
+            }
+
+
+            /* CONFIRM */
+
+            if (
+                !confirmValue
+            ) {
+
+                setInvalid(
+                    confirmPassword,
+                    confirmPasswordError,
+                    "Vui lòng nhập lại mật khẩu."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else if (
+                passwordValue !==
+                confirmValue
+            ) {
+
+                setInvalid(
+                    confirmPassword,
+                    confirmPasswordError,
+                    "Mật khẩu xác nhận không khớp."
+                );
+
+
+                valid =
+                    false;
+
+            }
+            else {
+
+                setValid(
+                    confirmPassword
+                );
+
+            }
+
+
+            /* TERMS */
+
+            if (
+                !agreeTerms.checked
+            ) {
+
+                termsError.textContent =
+                    "Bạn cần đồng ý với điều khoản để tiếp tục.";
+
+
+                valid =
+                    false;
+
+            }
+
+
+            if (!valid) {
+
+                return;
+
+            }
+
+
+            createDemoAccount(
+                nameValue,
+                emailValue,
+                passwordValue
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       CREATE DEMO ACCOUNT
+    ========================================================= */
+
+    function demoPasswordFingerprint(value) { let h = 2166136261; for (const c of value) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); }
+
+    function createDemoAccount(
+        name,
+        userEmail,
+        userPassword
+    ) {
+
+        registerButton.disabled =
+            true;
+
+
+        registerButton.innerHTML =
+            `
+
+                <i
+                    class="
+                        fa-solid
+                        fa-circle-notch
+                        fa-spin
+                    "
+                ></i>
+
+                Đang tạo tài khoản...
+
+            `;
+
+
+        setTimeout(
+            function () {
+
+                // This local-only fingerprint is for prototype testing,
+                // NOT secure authentication. Never use for a production account.
+                const registered = { fullName: name, email: userEmail.trim().toLowerCase(), passwordFingerprint: demoPasswordFingerprint(userPassword) };
+                localStorage.setItem("transenseRegisteredDemoAccount", JSON.stringify(registered));
+
+                localStorage.setItem(
+                    "userName",
+                    name
+                );
+
+
+                localStorage.setItem(
+                    "userEmail",
+                    userEmail
+                );
+
+
+                localStorage.setItem(
+                    "isLoggedIn",
+                    "true"
+                );
+
+
+                localStorage.setItem(
+                    "loginProvider",
+                    "local-demo"
+                );
+
+
+                localStorage.setItem(
+                    "accountStatus",
+                    "active"
+                );
+
+
+                localStorage.setItem(
+                    "accountCreatedAt",
+                    new Date()
+                        .toISOString()
+                );
+
+
+                successMessage.textContent =
+                    "Xin chào "
+                    +
+                    name
+                    +
+                    ". Tài khoản demo của bạn đã được tạo. Đang chuyển đến Transense AI...";
+
+
+                successOverlay
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    1200
+                );
+
+            },
+            700
+        );
+
+    }
+
+
+    /* =========================================================
+       VALIDATE EMAIL
+    ========================================================= */
+
+    function isValidEmail(
+        value
+    ) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            .test(
+                value
+            );
+
+    }
+
+
+    /* =========================================================
+       INVALID
+    ========================================================= */
+
+    function setInvalid(
+        input,
+        errorElement,
+        message
+    ) {
+
+        input
+            .classList
+            .remove(
+                "valid"
+            );
+
+
+        input
+            .classList
+            .add(
+                "invalid"
+            );
+
+
+        errorElement.textContent =
+            message;
+
+    }
+
+
+    /* =========================================================
+       VALID
+    ========================================================= */
+
+    function setValid(
+        input
+    ) {
+
+        input
+            .classList
+            .remove(
+                "invalid"
+            );
+
+
+        input
+            .classList
+            .add(
+                "valid"
+            );
+
+    }
+
+
+    /* =========================================================
+       CLEAR ERRORS
+    ========================================================= */
+
+    function clearErrors() {
+
+        const inputs = [
+
+            fullName,
+            email,
+            password,
+            confirmPassword
+
+        ];
+
+
+        inputs.forEach(
+            function (
+                input
+            ) {
+
+                input
+                    .classList
+                    .remove(
+                        "valid",
+                        "invalid"
+                    );
+
+            }
+        );
+
+
+        nameError.textContent =
+            "";
+
+
+        emailError.textContent =
+            "";
+
+
+        passwordError.textContent =
+            "";
+
+
+        confirmPasswordError.textContent =
+            "";
+
+
+        termsError.textContent =
+            "";
+
+    }
+
+    function applyRegisterMicrocopyTranslations() {
+        const lang = (window.TransenseI18n && window.TransenseI18n.language) || (navigator.languages?.[0] || navigator.language || "en").toLowerCase().split("-")[0];
+        const isVi = lang === "vi";
+        const desc = document.querySelector('.register-description');
+        if (desc) desc.textContent = isVi
+            ? 'Tạo tài khoản để lưu lịch sử dịch, quản lý nội dung đã dịch và sử dụng các chức năng hỗ trợ ngữ cảnh, phiên âm và phát âm trên Transense AI.'
+            : 'Create an account to save translation history, manage translated content, and use context support, pronunciation, and text-to-speech features in Transense AI.';
+        const benefitRows = document.querySelectorAll('.benefit-content span');
+        if (benefitRows[0]) benefitRows[0].textContent = isVi ? 'Hỗ trợ xác định nghĩa phù hợp của từ đa nghĩa và thành ngữ.' : 'Helps identify the appropriate meaning of polysemous words and idioms.';
+        if (benefitRows[1]) benefitRows[1].textContent = isVi ? 'Dễ dàng xem lại nội dung đã dịch trong quá trình sử dụng.' : 'Quickly review translated content during use.';
+        if (benefitRows[2]) benefitRows[2].textContent = isVi ? 'Hỗ trợ người dùng nghe và luyện cách đọc nội dung.' : 'Supports listening practice and pronunciation training.';
+        const authTop = document.querySelector('.auth-preview-top');
+        if (authTop && authTop.children.length > 1) {
+            authTop.children[0].innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> ' + (isVi ? 'Xem trước Transense AI' : 'Transense AI preview');
+            authTop.children[1].textContent = isVi ? 'Ngữ cảnh tài chính' : 'Financial context';
+        }
+        const previewSmall = document.querySelectorAll('.auth-preview-box small');
+        if (previewSmall[1]) previewSmall[1].textContent = isVi ? 'TIẾNG VIỆT' : 'VIETNAMESE';
+        const previewFoot = document.querySelectorAll('.auth-preview-foot span');
+        if (previewFoot[2]) previewFoot[2].textContent = isVi ? 'Dịch dựa trên ngữ cảnh' : 'Context-based translation';
+        const stepSpans = document.querySelectorAll('.step-card span');
+        if (stepSpans[0]) stepSpans[0].textContent = isVi ? 'Nhập thông tin cơ bản.' : 'Enter your basic information.';
+        if (stepSpans[1]) stepSpans[1].textContent = isVi ? 'Truy cập hệ thống dịch.' : 'Access the translation workspace.';
+        if (stepSpans[2]) stepSpans[2].textContent = isVi ? 'Sử dụng các chức năng dịch.' : 'Start using the translation features.';
+        const panelDesc = document.querySelector('.register-panel-description');
+        if (panelDesc) panelDesc.textContent = isVi ? 'Điền thông tin bên dưới để tạo tài khoản sử dụng trong phiên bản demo Transense AI.' : 'Enter the information below to create an account for the Transense AI demo version.';
+        const note = document.querySelector('.register-note span');
+        if (note) note.textContent = isVi ? 'Phiên bản hiện tại mô phỏng chức năng tài khoản bằng JavaScript và localStorage. Mật khẩu không được lưu trong trình duyệt.' : 'The current version simulates account features with JavaScript and localStorage. Passwords are not stored in the browser.';
+        const successCard = document.querySelector('.success-card h3');
+        if (successCard) successCard.textContent = isVi ? 'Tạo tài khoản thành công' : 'Account created successfully';
+        const successMsg = document.getElementById('successMessage');
+        if (successMsg && !successMsg.dataset.locked) successMsg.textContent = isVi ? 'Đang chuẩn bị tài khoản Transense AI...' : 'Preparing your Transense AI account...';
+    }
+
+    window.addEventListener('transenseLanguageChanged', applyRegisterMicrocopyTranslations);
+    setTimeout(applyRegisterMicrocopyTranslations, 50);
+
+</script>
+
+
+<!-- Nếu bạn đã tạo hệ thống đổi ngôn ngữ thì giữ dòng này -->
+<script src="js/i18n.js?v=menu-fix-20261023"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+        Lịch Sử Dịch - Transense AI
+    </title>
+<link href="css/style.css" rel="stylesheet"/>
+<style>
+
+        /* =========================================================
+           HISTORY PAGE
+        ========================================================= */
+
+        .history-page {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+
+            padding:
+                52px 0
+                60px;
+        }
+
+
+        /* =========================================================
+           PAGE HEADING
+        ========================================================= */
+
+        .history-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 28px;
+        }
+
+        .history-heading-left {
+            max-width: 680px;
+        }
+
+        .history-label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 700;
+
+            letter-spacing: 1.7px;
+        }
+
+        .history-heading h1 {
+            margin: 0;
+
+            color: var(--text);
+
+            font-size:
+                clamp(
+                    34px,
+                    4vw,
+                    48px
+                );
+
+            line-height: 1.1;
+
+            letter-spacing: -1.4px;
+        }
+
+        .history-heading p {
+            margin:
+                12px 0
+                0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        .history-total-chip {
+            min-height: 42px;
+
+            display: inline-flex;
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 0 15px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 999px;
+
+            background: var(--surface);
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            white-space: nowrap;
+        }
+
+        .history-total-chip strong {
+            color: var(--text);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .history-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0, 1fr)
+                );
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .history-stat-card {
+            min-height: 112px;
+
+            padding: 18px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: var(--surface);
+
+            box-shadow: var(--shadow);
+        }
+
+        .history-stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 12px;
+
+            margin-bottom: 14px;
+        }
+
+        .history-stat-icon {
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            background: var(--surface-2);
+
+            color: var(--blue);
+        }
+
+        .history-stat-icon svg {
+            width: 17px;
+            height: 17px;
+
+            fill: none;
+            stroke: currentColor;
+
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .history-stat-caption {
+            color: var(--muted-2);
+
+            font-size: 9px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .history-stat-value {
+            color: var(--text);
+
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .history-stat-sub {
+            margin-top: 4px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           TOOLBAR
+        ========================================================= */
+
+        .history-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 14px;
+
+            margin-bottom: 18px;
+
+            padding: 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: var(--surface);
+
+            box-shadow: var(--shadow);
+        }
+
+        .history-search {
+            position: relative;
+
+            flex: 1;
+
+            max-width: 520px;
+        }
+
+        .history-search svg {
+            position: absolute;
+
+            top: 50%;
+            left: 14px;
+
+            width: 16px;
+            height: 16px;
+
+            transform: translateY(-50%);
+
+            fill: none;
+            stroke: var(--muted-2);
+
+            stroke-width: 1.8;
+        }
+
+        .history-search input {
+            width: 100%;
+            height: 44px;
+
+            padding:
+                0 14px
+                0 42px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: var(--surface-2);
+
+            color: var(--text);
+
+            font-family: inherit;
+            font-size: 12px;
+        }
+
+        .history-search input::placeholder {
+            color: var(--muted-2);
+        }
+
+        .history-search input:focus {
+            border-color: var(--blue);
+        }
+
+        .clear-all-button {
+            min-height: 44px;
+
+            padding: 0 16px;
+
+            border: 1px solid #fecaca;
+
+            border-radius: 11px;
+
+            background: #fff5f5;
+
+            color: #dc2626;
+
+            font-family: inherit;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           HISTORY LIST
+        ========================================================= */
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+
+        /* =========================================================
+           HISTORY CARD
+        ========================================================= */
+
+        .history-card-pro {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            background: var(--surface);
+
+            box-shadow: var(--shadow);
+        }
+
+        .history-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding:
+                14px 18px;
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+            background:
+                var(--surface-2);
+        }
+
+        .history-meta {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .history-number {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            background: var(--surface);
+
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .history-meta-title {
+            color: var(--text);
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .history-meta-date {
+            margin-top: 3px;
+
+            color: var(--muted-2);
+
+            font-size: 9px;
+        }
+
+        .history-card-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+        }
+
+        .history-action-btn {
+            min-height: 34px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 6px;
+
+            padding: 0 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            background: var(--surface);
+
+            color: var(--muted);
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+        .history-action-btn:hover {
+            color: var(--blue);
+        }
+
+        .history-action-btn.delete {
+            border-color: #fecaca;
+
+            color: #dc2626;
+        }
+
+        .history-action-btn svg {
+            width: 13px;
+            height: 13px;
+
+            fill: none;
+            stroke: currentColor;
+
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+
+        /* =========================================================
+           TRANSLATION COLUMNS
+        ========================================================= */
+
+        .history-translation {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 14px;
+
+            padding: 18px;
+        }
+
+        .history-language-box {
+            min-height: 145px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            background: var(--surface-2);
+        }
+
+        .history-language-head {
+            padding:
+                12px 14px;
+
+            border-bottom:
+                1px solid
+                var(--border);
+        }
+
+        .history-language-caption {
+            margin-bottom: 4px;
+
+            color: var(--muted-2);
+
+            font-size: 8px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .history-language-name {
+            color: var(--text);
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .history-language-text {
+            padding: 15px;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            line-height: 1.75;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================================
+           CONTEXT EXPLANATION
+        ========================================================= */
+
+        .history-context {
+            margin:
+                0 18px
+                18px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            background: var(--surface-2);
+        }
+
+        .history-context summary {
+            padding: 13px 15px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            list-style: none;
+        }
+
+        .history-context summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .history-context summary::before {
+            content: "＋";
+
+            display: inline-block;
+
+            margin-right: 8px;
+
+            color: var(--blue);
+        }
+
+        .history-context[open] summary::before {
+            content: "−";
+        }
+
+        .history-context-content {
+            padding:
+                0 15px
+                15px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================================
+           EMPTY STATE
+        ========================================================= */
+
+        .history-empty {
+            min-height: 360px;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            background: var(--surface);
+
+            text-align: center;
+
+            box-shadow: var(--shadow);
+        }
+
+        .history-empty-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 17px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: var(--surface-2);
+
+            color: var(--blue);
+        }
+
+        .history-empty-icon svg {
+            width: 23px;
+            height: 23px;
+
+            fill: none;
+            stroke: currentColor;
+
+            stroke-width: 1.8;
+        }
+
+        .history-empty h3 {
+            margin:
+                0 0
+                8px;
+
+            color: var(--text);
+
+            font-size: 18px;
+        }
+
+        .history-empty p {
+            max-width: 420px;
+
+            margin:
+                0 0
+                18px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .history-start-button {
+            min-height: 42px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 18px;
+
+            border-radius: 10px;
+
+            background: var(--blue);
+
+            color: #ffffff;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           NO SEARCH RESULT
+        ========================================================= */
+
+        .no-result {
+            padding: 45px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: var(--surface);
+
+            color: var(--muted);
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .history-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .history-translation {
+                grid-template-columns: 1fr;
+            }
+
+            .history-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .history-page {
+                width: calc(100% - 20px);
+
+                padding-top: 35px;
+            }
+
+            .history-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .history-search {
+                max-width: none;
+            }
+
+            .history-card-top {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .history-card-actions {
+                width: 100%;
+            }
+
+            .history-action-btn {
+                flex: 1;
+            }
+
+        }
+
+    
+/* ===== HISTORY TABS, FILTER & SAVED ===== */
+.history-toolbar-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.history-toolbar-left .history-search{width:100%;flex:1}
+.filter-wrap{position:relative}
+.history-filter-btn{height:44px;display:flex;align-items:center;gap:13px;padding:0 17px;border:1px solid var(--border);border-radius:11px;background:var(--surface-2);color:var(--text);cursor:pointer;font-weight:700}
+.history-filter-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none}
+.history-filter-panel{position:absolute;z-index:40;top:calc(100% + 8px);right:0;width:300px;max-width:90vw;padding:18px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow-large)}
+.history-filter-panel[hidden]{display:none}
+.history-filter-panel label{display:block;color:var(--text);font-size:12px;margin-bottom:10px}
+.history-filter-panel select{width:100%;padding:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:9px}
+.history-filter-panel button{margin-top:10px;border:0;background:transparent;color:var(--blue);cursor:pointer}
+.history-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 18px;padding:6px;border:1px solid var(--border);background:var(--surface);border-radius:15px}
+.history-tab{padding:15px 12px;background:transparent;border:1px solid transparent;border-radius:10px;color:var(--muted);font:inherit;font-weight:700;cursor:pointer}
+.history-tab.is-active{background:var(--surface-2);border-color:var(--border);color:var(--text);box-shadow:inset 0 -3px var(--blue)}
+.history-tab span{margin-left:8px;color:var(--blue)}
+.history-card-actions .save-btn{color:var(--muted);white-space:nowrap}
+.history-card-actions .save-btn.is-saved{color:#eab308;border-color:#b99023}
+.history-language-text{height:auto!important;min-height:80px!important;display:block!important;text-align:left!important;padding:20px!important;overflow-wrap:anywhere}
+.history-translation{align-items:stretch}
+@media(max-width:740px){.history-toolbar{flex-wrap:wrap}.history-toolbar-left{width:100%}.history-filter-panel{right:0}.history-card-top{flex-wrap:wrap;gap:12px}.history-card-actions{flex-wrap:wrap}.history-tabs{gap:4px}}
+
+/* Responsive fixes */
+
+@media(max-width:640px){
+ .history-toolbar,.history-toolbar-left,.history-card-top,.history-card-actions{min-width:0;max-width:100%;}
+ .history-toolbar-left{flex-wrap:wrap;}
+ .history-search,.history-search input{min-width:0;width:100%;}
+ .history-filter-panel{max-width:calc(100vw - 40px);}
+ .history-tabs{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .history-tab{min-width:0;padding:12px 5px;font-size:12px;overflow-wrap:anywhere;}
+ .history-translation,.history-card-body,.history-card-content{grid-template-columns:minmax(0,1fr)!important;min-width:0;}
+ .history-language-text{overflow-wrap:anywhere;}
+}
+
+
+/* Distinct statistic highlights, legible in both themes */
+.history-stat-card {position:relative;overflow:hidden;box-shadow:0 12px 26px rgba(15,23,42,.055);}
+.history-stat-card::before {content:"";position:absolute;width:140px;height:140px;right:-77px;top:-82px;border-radius:50%;background:var(--stat-glow);pointer-events:none;}
+.history-stat-card:nth-child(1){--stat-glow:rgba(59,130,246,.10);border-color:rgba(96,165,250,.30);}
+.history-stat-card:nth-child(2){--stat-glow:rgba(16,185,129,.10);border-color:rgba(52,211,153,.30);}
+.history-stat-card:nth-child(3){--stat-glow:rgba(245,158,11,.10);border-color:rgba(245,158,11,.28);}
+.history-stat-card:nth-child(1) .history-stat-icon {color:#60a5fa;border-color:rgba(96,165,250,.34);background:rgba(59,130,246,.12);}
+.history-stat-card:nth-child(2) .history-stat-icon {color:#10b981;border-color:rgba(16,185,129,.34);background:rgba(16,185,129,.11);}
+.history-stat-card:nth-child(3) .history-stat-icon {color:#f59e0b;border-color:rgba(245,158,11,.34);background:rgba(245,158,11,.11);}
+html[data-theme="light"] .history-stat-card {background:linear-gradient(145deg,#fff,#f8fbff);}
+html[data-theme="light"] .history-stat-card:nth-child(1) .history-stat-icon{color:#2563eb;}
+html[data-theme="light"] .history-stat-card:nth-child(2) .history-stat-icon{color:#059669;}
+html[data-theme="light"] .history-stat-card:nth-child(3) .history-stat-icon{color:#b45309;}
+
+/* History actions and stats: light/dark balanced */
+.clear-all-button {min-height:46px!important;padding:0 19px!important;border:1px solid rgba(239,68,68,.42)!important;border-radius:13px!important;background:rgba(239,68,68,.07)!important;color:#ef6b70!important;font-size:13px!important;font-weight:650!important;transition:background .2s,border-color .2s,transform .2s!important;}
+.clear-all-button:hover {background:rgba(239,68,68,.17)!important;border-color:#ef4444!important;transform:translateY(-1px);}
+html[data-theme="light"] .clear-all-button {color:#b91c1c!important;background:#fff7f7!important;}
+html[data-theme="light"] .clear-all-button:hover {background:#fee2e2!important;}
+.history-stat-card .history-stat-icon {box-shadow:0 0 18px color-mix(in srgb,currentColor 18%,transparent)!important;}
+.history-stat-card:nth-child(3) .history-stat-icon svg path {fill:currentColor;stroke:none;}
+</style>
+<link rel="stylesheet" href="css/floating-premium.css?v=20261023-spacing2"/>
+
+<link rel="stylesheet" href="css/clean-floating-final.css?v=20261023-1"/>
+<link rel="stylesheet" href="css/account-actions-final.css?v=20261023-3"/>
+<link rel="stylesheet" href="css/final-static-polish.css?v=20261023-final"/>
+</head>
+<body>
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<header class="navbar">
+<a class="brand" href="index.html">
+<img alt="Transense AI" class="brand-logo" src="images/transense-logo-mark.png"/>
+<div class="brand-main">
+<span class="brand-name">
+                Transense <span class="brand-ai">AI</span>
+</span>
+<span class="demo-badge">
+                DEMO
+            </span>
+</div>
+</a>
+<nav class="nav-links clean-floating-nav" aria-label="Điều hướng chính">
+<a class="nav-page clean-link" data-nav="index.html" href="index.html"><span>Trang dịch</span></a>
+<a class="nav-page clean-link" data-nav="history.html" href="history.html"><span>Lịch sử</span></a>
+<a class="nav-page clean-link" data-nav="about.html" href="about.html"><span>Giới thiệu</span></a>
+<div class="nav-user-wrap">
+<a aria-haspopup="true" class="account-button nav-user-trigger" href="profile.html" id="accountButton"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21C4 17 7 14 12 14C17 14 20 17 20 21"></path></svg><span id="accountName">Tài khoản</span><span aria-hidden="true" class="user-arrow">›</span></a>
+<div aria-label="Menu người dùng" class="user-dropdown">
+<div class="account-dropdown-person"><div class="account-dropdown-avatar" aria-hidden="true">T</div><div><strong class="account-dropdown-name">Tài khoản</strong><small>Tài khoản Demo</small></div></div>
+
+<a class="account-action-stable" href="profile.html"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span><span class="menu-action-label">Thông tin tài khoản</span><span aria-hidden="true">›</span></a>
+<button class="menu-placeholder account-action-stable" disabled="" type="button"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></span><span class="menu-action-label">Thông báo</span><small>Sắp ra mắt</small></button>
+<button class="menu-placeholder account-action-stable" disabled="" type="button"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-3a9 9 0 0 1 18 0v3"/><path d="M21 16a3 3 0 0 1-3 3h-1v-6h1a3 3 0 0 1 3 3Z"/><path d="M3 16a3 3 0 0 0 3 3h1v-6H6a3 3 0 0 0-3 3Z"/><path d="M18 19a5 5 0 0 1-5 3h-2"/></svg></span><span class="menu-action-label">Trợ giúp &amp; hỗ trợ</span><small>Sắp ra mắt</small></button>
+<button class="menu-placeholder account-action-stable" disabled="" type="button"><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19.4 15 .1.1 1.4 1.4-2.4 2.4-1.4-1.4A8 8 0 0 1 14 19v2h-4v-2a8 8 0 0 1-3.1-1.5l-1.4 1.4-2.4-2.4 1.4-1.4A8 8 0 0 1 3 13h-2v-3h2a8 8 0 0 1 1.5-3.1L3.1 5.5l2.4-2.4 1.4 1.4A8 8 0 0 1 10 3V1h4v2a8 8 0 0 1 3.1 1.5l1.4-1.4 2.4 2.4-1.4 1.4A8 8 0 0 1 21 10h2v3h-2a8 8 0 0 1-1.6 2Z"/></svg></span><span class="menu-action-label">Cài đặt</span><small>Thiết kế sau</small></button>
+<div class="menu-theme"><span class="menu-theme-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M2 12h2m16 0h2M4.9 19.1l1.5-1.5M17.6 6.4l1.5-1.5"/></svg></span><span>Chế độ: <strong class="theme-mode-name">Tối</strong></span><button aria-checked="false" aria-label="Bật chế độ sáng hoặc tối" class="theme-toggle" role="switch" type="button"><span class="theme-knob"></span></button></div>
+<button class="menu-logout" type="button"><span class="menu-logout-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/><path d="M14 8l4 4-4 4m4-4H9"/></svg></span><span class="menu-logout-label">Đăng xuất</span></button>
+</div>
+</div>
+</nav>
+</header>
+<!-- =========================================================
+     MAIN
+========================================================= -->
+<main class="history-page">
+<!-- PAGE HEADING -->
+<div class="history-heading">
+<div class="history-heading-left">
+<span class="history-label">
+                TRANSLATION HISTORY
+            </span>
+<h1>
+                Lịch Sử Dịch
+            </h1>
+<p>
+                Xem lại, tìm kiếm và quản lý
+                các nội dung bạn đã dịch bằng Transense AI.
+            </p>
+</div>
+<div class="history-total-chip">
+<strong id="historyCountTop">
+                0
+            </strong>
+
+            bản dịch đã lưu
+
+        </div>
+</div>
+<!-- =====================================================
+         STATS
+    ====================================================== -->
+<section class="history-stats">
+<!-- TOTAL -->
+<div class="history-stat-card">
+<div class="history-stat-top">
+<div class="history-stat-icon">
+<svg viewbox="0 0 24 24">
+<rect height="17" rx="2" width="14" x="5" y="3.5"></rect><path d="M8 8h8M8 12h8M8 16h5"></path>
+</svg>
+</div>
+<div class="history-stat-caption">
+                    TỔNG LỊCH SỬ
+                </div>
+</div>
+<div class="history-stat-value" id="historyTotal">
+                0
+            </div>
+<div class="history-stat-sub">
+                Tổng số các câu đã dịch
+            </div>
+</div>
+<!-- TODAY -->
+<div class="history-stat-card">
+<div class="history-stat-top">
+<div class="history-stat-icon">
+<svg viewbox="0 0 24 24">
+<rect height="15" rx="2" width="16" x="4" y="5"></rect>
+<path d="M8 3V7"></path>
+<path d="M16 3V7"></path>
+<path d="M4 10H20"></path><path d="M9 15l2 2 4-4"></path>
+</svg>
+</div>
+<div class="history-stat-caption">
+                    HÔM NAY
+                </div>
+</div>
+<div class="history-stat-value" id="todayCount">
+                0
+            </div>
+<div class="history-stat-sub">
+                Bản dịch trong ngày
+            </div>
+</div>
+<!-- LANGUAGE -->
+<div class="history-stat-card">
+<div class="history-stat-top">
+<div class="history-stat-icon">
+<svg viewbox="0 0 24 24">
+<path d="M12 3.2L14.8 8.7L20.9 9.6L16.5 13.9L17.5 20L12 17.1L6.5 20L7.5 13.9L3.1 9.6L9.2 8.7Z" fill="currentColor" stroke="none"></path>
+</svg>
+</div>
+<div class="history-stat-caption">
+                    GHIM
+                </div>
+</div>
+<div class="history-stat-value" id="savedCount">0</div>
+<div class="history-stat-sub">
+                Bản dịch đã được lưu
+            </div>
+</div>
+</section>
+<!-- =====================================================
+         TOOLBAR
+    ====================================================== -->
+<section class="history-toolbar">
+<div class="history-toolbar-left">
+<div class="history-search">
+<svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M16 16L21 21"></path></svg>
+<input id="historySearch" placeholder="Tìm trong văn bản nguồn và kết quả AI..." type="text"/>
+</div>
+<div class="filter-wrap">
+<button aria-controls="historyFilterPanel" aria-expanded="false" class="history-filter-btn" id="filterToggle" type="button">Lọc <svg viewbox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"></path></svg></button>
+<div class="history-filter-panel" hidden="" id="historyFilterPanel">
+<label for="historyLanguageFilter">Ngôn ngữ cần tìm (nguồn hoặc kết quả)</label>
+<select id="historyLanguageFilter"><option value="">Tất cả ngôn ngữ</option></select>
+<button id="clearFilterBtn" type="button">Xóa bộ lọc</button>
+</div>
+</div>
+</div>
+<button class="clear-all-button" id="clearAllButton" type="button">Xóa toàn bộ lịch sử</button>
+</section>
+<div aria-label="Nhóm lịch sử dịch" class="history-tabs" role="tablist">
+<button aria-selected="true" class="history-tab is-active" id="tabRecent" role="tab" type="button">Các câu đã dịch <span id="recentTabCount">0</span></button>
+<button aria-selected="false" class="history-tab" id="tabSaved" role="tab" type="button">Các câu đã lưu <span id="savedTabCount">0</span></button>
+</div>
+<!-- =====================================================
+         HISTORY CONTENT
+    ====================================================== -->
+<section id="historyContainer"></section>
+</main>
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="footer">
+<div>
+<strong>
+            Transense AI
+        </strong>
+
+        — Translation History
+
+    </div>
+<div class="footer-right">
+        Prototype Đồ án 1
+    </div>
+</footer>
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+<script>
+
+
+    /* =====================================================
+       LOGIN CHECK
+    ====================================================== */
+
+    const isLoggedIn =
+        localStorage.getItem(
+            "isLoggedIn"
+        ) === "true";
+
+
+    if (!isLoggedIn) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /* =====================================================
+       USER NAME
+    ====================================================== */
+
+    document
+        .getElementById(
+            "accountName"
+        )
+        .textContent =
+        localStorage.getItem(
+            "userName"
+        ) || "Tài khoản";
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const historyContainer =
+        document.getElementById(
+            "historyContainer"
+        );
+
+
+    const historySearch =
+        document.getElementById(
+            "historySearch"
+        );
+
+
+    const historyTotal =
+        document.getElementById(
+            "historyTotal"
+        );
+
+
+    const historyCountTop =
+        document.getElementById(
+            "historyCountTop"
+        );
+
+
+    const todayCount =
+        document.getElementById(
+            "todayCount"
+        );
+
+
+    const clearAllButton =
+        document.getElementById(
+            "clearAllButton"
+        );
+
+
+    /* =====================================================
+       GET HISTORY
+    ====================================================== */
+
+    function getHistory() {
+
+        return (
+            JSON.parse(
+                localStorage.getItem(
+                    "translationHistory"
+                )
+            )
+            ||
+            []
+        );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ====================================================== */
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.textContent =
+            value || "";
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =====================================================
+       TODAY COUNT
+    ====================================================== */
+
+    function countToday(history) {
+
+        const today =
+            new Date()
+                .toLocaleDateString(
+                    "vi-VN"
+                );
+
+
+        return history.filter(
+            function (item) {
+
+                return (
+                    item.date &&
+                    item.date.includes(
+                        today
+                    )
+                );
+
+            }
+        ).length;
+
+    }
+
+
+    /* =====================================================
+       LOAD HISTORY
+    ====================================================== */
+
+    const savedCount = document.getElementById("savedCount");
+    const recentTabCount = document.getElementById("recentTabCount");
+    const savedTabCount = document.getElementById("savedTabCount");
+    const tabRecent = document.getElementById("tabRecent");
+    const tabSaved = document.getElementById("tabSaved");
+    const languageFilter = document.getElementById("historyLanguageFilter");
+    const filterToggle = document.getElementById("filterToggle");
+    const filterPanel = document.getElementById("historyFilterPanel");
+    let activeHistoryTab = "recent";
+
+    const languageNames = {
+      vi:"Tiếng Việt", en:"Tiếng Anh", zh:"Tiếng Trung", ja:"Tiếng Nhật",
+      ko:"Tiếng Hàn", fr:"Tiếng Pháp", de:"Tiếng Đức", es:"Tiếng Tây Ban Nha",
+      it:"Tiếng Ý", pt:"Tiếng Bồ Đào Nha", ru:"Tiếng Nga", th:"Tiếng Thái",
+      ar:"Tiếng Ả Rập", hi:"Tiếng Hindi"
+    };
+    function displayLanguage(item, side) {
+      const code = item[side + "Language"];
+      return item[side + "LanguageName"] || languageNames[code] || (side === "source" ? "Tiếng Anh" : "Tiếng Việt");
+    }
+    function saveHistoryArray(items) {
+      localStorage.setItem("translationHistory", JSON.stringify(items));
+    }
+    function toggleSaved(index) {
+      const history = getHistory();
+      if (!history[index]) return;
+      history[index].saved = !history[index].saved;
+      saveHistoryArray(history);
+      loadHistory();
+    }
+    function selectHistoryTab(tab) {
+      activeHistoryTab = tab;
+      const recent = tab === "recent";
+      tabRecent.classList.toggle("is-active", recent);
+      tabSaved.classList.toggle("is-active", !recent);
+      tabRecent.setAttribute("aria-selected", String(recent));
+      tabSaved.setAttribute("aria-selected", String(!recent));
+      loadHistory();
+    }
+    tabRecent.addEventListener("click", () => selectHistoryTab("recent"));
+    tabSaved.addEventListener("click", () => selectHistoryTab("saved"));
+    filterToggle.addEventListener("click", () => {
+      filterPanel.hidden = !filterPanel.hidden;
+      filterToggle.setAttribute("aria-expanded", String(!filterPanel.hidden));
+    });
+    document.getElementById("clearFilterBtn").addEventListener("click", () => {
+      languageFilter.value = "";
+      historySearch.value = "";
+      loadHistory();
+    });
+    languageFilter.addEventListener("change", () => loadHistory());
+
+    function loadHistory() {
+      const history = getHistory();
+      const pinned = history.filter(item => item.saved === true).length;
+      historyTotal.textContent = history.length;
+      historyCountTop.textContent = history.length;
+      todayCount.textContent = countToday(history);
+      savedCount.textContent = pinned;
+      recentTabCount.textContent = history.length;
+      savedTabCount.textContent = pinned;
+      clearAllButton.style.display = history.length ? "block" : "none";
+
+      const previousFilter = languageFilter.value;
+      languageFilter.innerHTML = '<option value="">Tất cả ngôn ngữ</option>' +
+        Object.entries(languageNames).map(([code,name]) => `<option value="${escapeHTML(code)}">${escapeHTML(name)}</option>`).join("");
+      languageFilter.value = Object.prototype.hasOwnProperty.call(languageNames, previousFilter) ? previousFilter : "";
+      const selectedLanguage = languageFilter.value;
+      const keyword = historySearch.value.trim().toLowerCase();
+      const filtered = history.map((item, originalIndex) => ({item,originalIndex})).filter(({item}) =>
+        (activeHistoryTab === "recent" || item.saved === true) &&
+        (!selectedLanguage || item.sourceLanguage === selectedLanguage || item.targetLanguage === selectedLanguage) &&
+        (!keyword || String(item.source || "").toLowerCase().includes(keyword) || String(item.result || "").toLowerCase().includes(keyword))
+      );
+      if (!filtered.length) {
+        historyContainer.innerHTML = `<div class="history-empty"><h3>${activeHistoryTab === "saved" && !pinned ? "Chưa có câu nào được lưu" : history.length ? "Không có bản dịch phù hợp" : "Chưa có lịch sử dịch"}</h3><p>${activeHistoryTab === "saved" ? "Nhấn nút Lưu ở tab Các câu đã dịch để ghim bản dịch yêu thích." : "Bạn có thể dịch văn bản tại trang Trang dịch hoặc thử bộ lọc khác."}</p></div>`;
+        return;
+      }
+      historyContainer.innerHTML = '<div class="history-list">' + filtered.map(({item,originalIndex},i) => {
+        const saved = Boolean(item.saved);
+        const src = displayLanguage(item,"source");
+        const dst = displayLanguage(item,"target");
+        return `<article class="history-card-pro">
+          <div class="history-card-top"><div class="history-meta"><div class="history-number">${String(i+1).padStart(2,"0")}</div><div>
+            <div class="history-meta-title">Bản dịch ${escapeHTML(src)} → ${escapeHTML(dst)}</div>
+            <div class="history-meta-date">${escapeHTML(item.date || "Không xác định thời gian")}</div>
+          </div></div><div class="history-card-actions">
+            <button class="history-action-btn save-btn ${saved ? "is-saved" : ""}" type="button" onclick="toggleSaved(${originalIndex})" aria-label="${activeHistoryTab === "saved" ? "Bỏ lưu" : saved ? "Đã lưu" : "Lưu bản dịch"}">${activeHistoryTab === "saved" ? "★̸ Bỏ lưu" : saved ? "★ Đã lưu" : "☆ Lưu"}</button>
+            <button class="history-action-btn" type="button" onclick="copyTranslation(${originalIndex}, this)">Sao chép</button>
+            <button class="history-action-btn delete" type="button" onclick="deleteHistory(${originalIndex})">Xóa</button>
+          </div></div>
+          <div class="history-translation">
+            <div class="history-language-box"><div class="history-language-head"><div class="history-language-caption">VĂN BẢN NGUỒN</div><div class="history-language-name">${escapeHTML(src)}</div></div><div class="history-language-text">${escapeHTML(item.source || "")}</div></div>
+            <div class="history-language-box"><div class="history-language-head"><div class="history-language-caption">KẾT QUẢ AI</div><div class="history-language-name">${escapeHTML(dst)}</div></div><div class="history-language-text">${escapeHTML(item.result || "")}</div></div>
+          </div>${item.explanation ? `<details class="history-context"><summary>Phân tích ngữ cảnh</summary><div class="history-context-content">${escapeHTML(item.explanation)}</div></details>` : ""}
+        </article>`;
+      }).join("") + '</div>';
+    }
+
+    /* =====================================================
+       DELETE ONE
+    ====================================================== */
+
+    function deleteHistory(
+        index
+    ) {
+
+
+        const confirmDelete =
+            confirm(
+                "Bạn có chắc muốn xóa bản dịch này?"
+            );
+
+
+        if (!confirmDelete) {
+
+            return;
+
+        }
+
+
+        const history =
+            getHistory();
+
+
+        history.splice(
+            index,
+            1
+        );
+
+
+        localStorage.setItem(
+
+            "translationHistory",
+
+            JSON.stringify(
+                history
+            )
+
+        );
+
+
+        loadHistory(
+            historySearch.value
+        );
+
+    }
+
+
+    /* =====================================================
+       DELETE ALL
+    ====================================================== */
+
+    clearAllButton.addEventListener(
+        "click",
+        function () {
+
+
+            const history =
+                getHistory();
+
+
+            if (
+                history.length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            const confirmDelete =
+                confirm(
+                    "Bạn có chắc muốn xóa toàn bộ lịch sử dịch?"
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            localStorage.removeItem(
+                "translationHistory"
+            );
+
+
+            historySearch.value =
+                "";
+
+
+            loadHistory();
+
+        }
+    );
+
+
+    /* =====================================================
+       COPY RESULT
+    ====================================================== */
+
+    function copyTranslation(
+        index,
+        button
+    ) {
+
+
+        const history =
+            getHistory();
+
+
+        const item =
+            history[index];
+
+
+        if (
+            !item ||
+            !item.result
+        ) {
+
+            alert(
+                "Không có nội dung để sao chép."
+            );
+
+            return;
+
+        }
+
+
+        navigator.clipboard
+            .writeText(
+                item.result
+            )
+            .then(
+                function () {
+
+
+                    const originalHTML =
+                        button.innerHTML;
+
+
+                    button.textContent =
+                        "Đã sao chép";
+
+
+                    setTimeout(
+                        function () {
+
+                            button.innerHTML =
+                                originalHTML;
+
+                        },
+                        1200
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ====================================================== */
+
+    historySearch.addEventListener(
+        "input",
+        function () {
+
+            loadHistory(
+                historySearch.value
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       START
+    ====================================================== */
+
+    loadHistory();
+
+
+</script>
+<script src="js/nav-user.js?v=20261023-spacing2"></script>
+<script src="js/i18n.js?v=menu-fix-20261023"></script>
+
+</body>
+</html>
